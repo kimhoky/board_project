@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+
+import Header from "./common/Header";
 import React, {useState, useEffect} from 'react';
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        // 기본코드
+     <Header />
         <ul>
           {message.map((v,idx)=><li key={`${idx}-${v}`}>{v}</li>)}
         </ul>

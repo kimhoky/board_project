@@ -1,0 +1,53 @@
+/* 헤더영역 */
+.mw {
+  max-width: 1200px;
+  width: calc(100% - 2rem);
+  margin: auto;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 1px solid #eaeaea;
+  padding: 1rem 0;
+}
+header h1 {
+  width: 25%;
+  min-width: 100px;
+  max-width: 250px;
+}
+header img {
+  width: 100%;
+}
+
+header nav,
+header div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+header nav {
+  flex-grow: 1;
+}
+
+header a {
+  padding: 0.5rem 1rem;
+  transition: 0.3s;
+}
+header a:hover {
+  color: tomato;
+}
+header div {
+  position: relative;
+}
+header div::before {
+  content: "";
+  width: 1px;
+  height: 10px;
+  position: absolute;
+  background-color: #999;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
