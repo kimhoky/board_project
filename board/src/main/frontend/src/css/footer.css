@@ -1,0 +1,33 @@
+.site-footer {
+  width: 100%;
+  background: #1b1b1b;
+  color: white;
+  text-align: center;
+  padding: 70px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+footer {
+  height: 10rem;
+}
+
+.social-links a,
+.footer-links a {
+  color: white;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+.social-links a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+.social-links img {
+  max-width: 50px;
+  height: auto;
+  position: relative;
+  bottom: 10px;
+}

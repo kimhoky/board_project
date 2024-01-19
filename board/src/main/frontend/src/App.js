@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import Header from "./common/Header";
+import Footer from "./common/Footer";
 import React, { useState, useEffect } from "react";
 
 //function App() {
@@ -24,6 +25,8 @@ function App() {
       <header className="App-header">
         <Header />
       </header>
+
+      <Footer />
     </div>
   );
 }

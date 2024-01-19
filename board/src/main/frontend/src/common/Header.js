@@ -47,17 +47,11 @@ export default function Header() {
       </div>
 
       <nav>
-        <button>
-          {" "}
-          {/* 네브바 버튼 */}
-          <Link to="/1">1</Link>
-        </button>
-        <button>
-          <Link to="/2">2</Link>
-        </button>
-        <button>
-          <Link to="/3">3</Link>
-        </button>
+        {" "}
+        {/* 네브바 버튼 */}
+        <Link to="/1">1</Link>
+        <Link to="/2">2</Link>
+        <Link to="/3">3</Link>
       </nav>
       <div>
         <a href="#">
