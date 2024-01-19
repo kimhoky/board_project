@@ -4,6 +4,7 @@ import com.stream.board.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Entity
 @Setter
@@ -31,7 +32,7 @@ public class MemberEntity { //table 역할
     @Column
     private int Is_streamer;
 
-    public static MemberEntity toMemberEntity(MemberDTO memberDTO){
+    public static MemberEntity toMemberEntity(@RequestParam MemberDTO memberDTO){
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setUser_id(memberDTO.getUser_id());
         memberEntity.setUser_password(memberDTO.getUser_password());
