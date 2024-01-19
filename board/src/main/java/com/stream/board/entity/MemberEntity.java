@@ -13,21 +13,27 @@ public class MemberEntity { //table 역할
     //jpa ==> database를 객체처럼 사용 가능
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String User_id;
 
     @Column
+
     private String User_password;
 
     @Column
+
     private String User_name;
 
     @Column
+
     private String User_favorite;
 
     @Column
+
     private String User_profile;
 
     @Column
+
     private int Is_streamer;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO){

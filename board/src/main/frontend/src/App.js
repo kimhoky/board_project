@@ -1,34 +1,24 @@
-import logo from "./logo.svg";
-import "./App.css";
 
-import Header from "./common/Header";
-import Footer from "./common/Footer";
+import "./App.css";
+//
+//import Header from "./common/Header";
+//import Footer from "./common/Footer";
 import React, { useState, useEffect } from "react";
 
-//function App() {
-//  const [message, setMessage]=useState([]);
-//  useEffect(()=>{
-//    fetch("/hello")
-//        .then((res)=>{
-//          return res.json();
-//        })
-//        .then((data)=>{
-//            setMessage(data);
-//        });
-//  },[]);
-function App() {
-  let [movieList, setMovieList] = useState([]);
-  let [jsonData, setjsonData] = useState([]);
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SignUp from './SignUp'; // 경로가 정확한지 확인
 
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header />
-      </header>
+    <Router>
+    <Routes>
+        <Route path="/signup" element={<SignUp />} />
 
-      <Footer />
-    </div>
+
+    </Routes>
+
+    </Router>
   );
-}
+};
 
 export default App;
