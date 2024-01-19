@@ -1,7 +1,8 @@
 /* 헤더영역 */
 .mw {
-  max-width: 1200px;
-  width: calc(100% - 2rem);
+  max-width: 2000px;
+  width: calc(100% - 20rem);
+  height: 116px;
   margin: auto;
 }
 header {
@@ -9,7 +10,6 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  border-bottom: 1px solid #eaeaea;
   padding: 1rem 0;
 }
 header h1 {
@@ -25,10 +25,10 @@ header nav,
 header div {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
 }
-header nav {
-  flex-grow: 1;
+
+.logo {
+  width: 100px;
 }
 
 header a {
@@ -46,8 +46,16 @@ header div::before {
   width: 1px;
   height: 10px;
   position: absolute;
-  background-color: #999;
   left: -1rem;
   top: 50%;
   transform: translateY(-50%);
+}
+button {
+  margin: 10px;
+}
+
+input {
+  width: 700px;
+  padding: 10px;
+  margin: 103px;
 }
