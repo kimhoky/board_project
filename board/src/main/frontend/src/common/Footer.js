@@ -10,21 +10,21 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="assets/img/facebook-2429746_640.png" alt="Facebook" />
+            <img src="./assets/facebook-2429746_640.png" alt="Facebook" />
           </a>
           <a
             href="https://www.instagram.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="assets/img/instagram-1675670_640.png" alt="Instagram" />
+            <img src="./assets/image.png" alt="Instagram" />
           </a>
           <a
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="assets/img/twitter-2430933_640.png" alt="Twitter" />
+            <img src="./assets/image.png" alt="Twitter" />
           </a>
         </div>
         <div className="footer-links">
