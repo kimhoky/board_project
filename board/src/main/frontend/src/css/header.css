@@ -51,11 +51,19 @@ header div::before {
   transform: translateY(-50%);
 }
 button {
-  margin: 10px;
+  margin: 20px;
 }
 
 input {
   width: 700px;
   padding: 10px;
   margin: 103px;
+}
+
+.search_button {
+  background: none;
+  border: none;
+  padding: 0;
+  position: relative;
+  right: 150px;
 }
