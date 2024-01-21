@@ -5,6 +5,7 @@ import com.stream.board.repository.LoginRepository;
 import com.stream.board.repository.MemberRepository;
 import com.stream.board.service.MemberService;
 import com.stream.board.session.SessionConst;
+import com.stream.board.session.SessionManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,8 @@ public class MemberController {
     private final LoginRepository loginRepository;
     // 생성자 주입
     private final MemberService memberService;
+
+    private final SessionManager sessionManager;
 
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
@@ -62,11 +65,13 @@ public class MemberController {
         BoardMember loginMember = memberService.login(member.getUser_ID(), member.getUser_password());
 
         if (loginMember == null) {
+            System.out.println(sessionManager.getSession(request));
             return member.toString();
         }
 
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.sessionId, loginMember.getUser_ID());
+        System.out.println(session.getAttribute(SessionConst.sessionId));
         return "true";
     }
 

@@ -18,7 +18,7 @@ function Login() {
                  document.location.href = "/login";
             } else if (response.data == true) {
                  console.log(response.data);
-                 document.location.href = "/add2";
+                 document.location.href = "/";
             } else {
                  console.log("잘못된 접근");
                  console.log(response.data);
