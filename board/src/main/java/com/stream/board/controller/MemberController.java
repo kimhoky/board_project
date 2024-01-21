@@ -9,11 +9,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import com.stream.board.model.BoardMember;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
@@ -55,18 +59,18 @@ public class MemberController {
 
     @PostMapping("/member/login")
     public String login(@ModelAttribute BoardMember member, HttpServletRequest request) {
-        BoardMember loginMember= memberService.login(member.getUser_ID(), member.getUser_password());
+        BoardMember loginMember = memberService.login(member.getUser_ID(), member.getUser_password());
 
-        if(loginMember == null) {
-            return "index";
+        if (loginMember == null) {
+            return member.toString();
         }
 
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.sessionId, loginMember.getUser_ID());
-        return "/";
+        return "true";
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/member/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if(session == null) {
