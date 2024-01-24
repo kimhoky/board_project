@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
+
 import Header from "./common/Header";
 import Footer from "./common/Footer";
-import Rank from "./common/Rank";
+import Main from "./pages/Main";
 const Add2Component = () => {
   return (
     <>
       <Header />
-      <Rank />
+
+      <Routes>
+        <Route path="/Main" element={<Main />} />
+
+        <Route path="*" element={<>이런 페이지는 없음</>} />
+      </Routes>
       <Footer />
     </>
   );

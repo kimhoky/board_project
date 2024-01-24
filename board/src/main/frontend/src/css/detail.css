@@ -1,0 +1,87 @@
+/* Detail */
+.Detail {
+  border: 1px solid red;
+}
+.Detail > * {
+  border: 1px solid blue;
+}
+.Detail {
+  padding-top: 2rem;
+}
+.DetailCon {
+  display: flex;
+  justify-content: space-between;
+}
+.DetailCon .imgCon {
+  padding-top: 40%;
+  border: 1px solid blue;
+  width: 40%;
+  position: relative;
+}
+.DetailCon .imgCon img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.DetailCon .DetailText {
+  border: 1px solid orange;
+  width: 58%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+.Detail h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0 0 1.25rem;
+  width: 100%;
+}
+.DetailCon .DetailText p {
+  width: 100%;
+  color: goldenrod;
+  font-weight: 600;
+}
+.DetailCon .cartWrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+}
+.DetailCon .countBtn {
+  min-width: 100px;
+  width: 15%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem 0;
+  background-color: #eaeaea;
+  margin-right: 2rem;
+}
+.DetailCon .countBtn .plus,
+.DetailCon .countBtn .minus {
+  cursor: pointer;
+}
+.DetailCon .cartBtn {
+  width: 50%;
+  border: 2px solid goldenrod;
+  color: goldenrod;
+  text-align: center;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.DetailCon .cartBtn:hover {
+  color: #fff;
+  background-color: goldenrod;
+}
+.Detail .listCon {
+  display: block;
+  width: 100%;
+}
+.Detail .slide {
+  border: 1px solid red;
+  position: relative;
+}
+.detailTab {
+  padding: 2rem 0;
+}
