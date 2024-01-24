@@ -1,21 +1,23 @@
 import "./App.css";
 import Add2Component from "./add_2";
-import React, { useState, useEffect } from "react";
-
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SignUp from "./SignUp"; // 경로가 정확한지 확인
-import Login from "./Login"; // 경로가 정확한지 확인
+import SignUp from "./SignUp";
+import Login from "./Login";
 import Main from "./pages/Main";
+import Header from "./common/Header";
+import Footer from "./common/Footer";
 
 const App = () => {
   return (
     <Router>
+      <Header /> {/* 헤더 컴포넌트 추가 */}
       <Routes>
         <Route path="/signup" element={<SignUp />} />
-         <Route path="/Main" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Add2Component />} />
+        <Route path="/main" element={<Main />} />
       </Routes>
+      <Footer /> {/* 푸터 컴포넌트 추가 */}
     </Router>
   );
 };
