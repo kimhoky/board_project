@@ -17,3 +17,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: validate
+
+
+      youtube:
+        api:
+          key: {AIzaSyC1_SYmCiEE5-YlhquO92kqYd-mHiqY0-s}
