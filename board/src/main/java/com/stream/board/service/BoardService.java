@@ -21,8 +21,8 @@ public class BoardService {
         this.boardRepository=boardRepository;
     }
     @Transactional
-    public List<BoardDTO> searchPosts(String title) {
-        return boardRepository.findDataByTitle(title);
+    public List<BoardDTO> searchPosts(String keyword) {
+        return boardRepository.findDataByKeyword(keyword);
     }
 
 
