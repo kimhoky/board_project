@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../css/header.css";
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,26 +13,18 @@ export default function Header() {
     setSearchText(e.target.value);
   };
   const handleSearch = () => {
-//  axios.get(`/board/search?searchText=${searchText}`)
-//          .then(response => {
-//              // 성공적으로 서버에서 응답을 받았을 때의 로직
-//              console.log("검색 결과:", response.data);
-//          })
-//          .catch(error => {
-//              // 에러 처리
-//              console.error("에러 발생:", error);
-//          });
-
-          axios.get(`/youtube?keyword=${searchText}`).then(response => {
-                                                                  // 성공적으로 서버에서 응답을 받았을 때의 로직
-                                                                console.log("검색 결과:", response.data);
-                                                             })
-                                                            .catch(error => {
-                                                                 // 에러 처리
-                                                              console.error("에러 발생:", error);
-                                                          });
-      // 검색 이벤트
-      console.log("검색어:", searchText);
+    axios
+      .get(`/board/search?searchText=${searchText}`)
+      .then((response) => {
+        // 성공적으로 서버에서 응답을 받았을 때의 로직
+        console.log("검색 결과:", response.data);
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.error("에러 발생:", error);
+      });
+    // 검색 이벤트
+    console.log("검색어:", searchText);
   };
 
   const handleKeyPress = (e) => {
