@@ -1,0 +1,139 @@
+.board {
+  height: 120vh;
+  max-width: 2000px;
+  width: calc(100%-10rem);
+}
+
+.sidebar {
+  width: 330px;
+  height: 960px;
+  background-color: #6c5ce7;
+  margin: 40px;
+  border-radius: 20px;
+}
+.white_box {
+  width: 250px;
+  height: 950px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  margin: 50px;
+}
+.icon {
+  margin: 10px;
+}
+
+.user {
+  width: 220px;
+  height: 60px;
+  flex-shrink: auto;
+  border-radius: 10px;
+  background-color: #fff;
+  align-self: center;
+  position: relative;
+  top: 100px;
+  margin: 16px;
+  align-items: center;
+}
+.home {
+  width: 220px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding-bottom: 30px;
+  position: relative;
+  top: 30px;
+  margin-bottom: 50px;
+}
+.writing {
+  display: flex;
+  width: 220px;
+  padding: 10px 16px;
+  align-items: center;
+  gap: 16px;
+  border-radius: 6px;
+  border: 0.8px solid #403c3c;
+  opacity: 0.6;
+  background: #ff6363;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: 50px;
+}
+
+.board_list {
+  width: 220px;
+  height: 210px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 23px;
+  margin-bottom: 50px;
+}
+.calendar {
+  width: 220px;
+  height: 40px;
+  border-radius: 10px;
+  border: 0.8px;
+  background-color: transparent;
+  margin-bottom: 20px;
+}
+.user-info .user-badge,
+.user-info .user-count {
+  font-size: 20px !important;
+}
+.toggleSwitch {
+  width: 30px; /* 토글 버튼 가로 크기 조절 */
+  height: 20px; /* 토글 버튼 세로 크기 조절 */
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+  margin: 30px;
+}
+
+.toggleSwitch .toggleButton {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #f03d3d;
+}
+
+#toggle:checked ~ .toggleSwitch {
+  background: #f03d3d;
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 20px);
+  background: #fff;
+}
+
+.toggleSwitch,
+.toggleButton {
+  transition: all 0.2s ease-in;
+}
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.toggleSwitch {
+  margin-right: px;
+}
+.toggle-text {
+  font-size: 10px;
+}
+.dark-mode {
+  background-color: #333; /* 다크 모드 배경색 */
+  color: #fff; /* 다크 모드 글자색 */
+}
+.dark-mode .board {
+  width: 3000px;
+  height: 30000px;
+  background-color: #555; /* 다크 모드에서의 board 배경색 */
+  color: #fff; /* 다크 모드에서의 글자색 */
+}
