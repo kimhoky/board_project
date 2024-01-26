@@ -35,6 +35,7 @@
   top: 100px;
   margin: 16px;
   align-items: center;
+  margin-bottom: 80px;
 }
 .home {
   width: 220px;
@@ -44,6 +45,7 @@
   padding-bottom: 30px;
   position: relative;
   top: 30px;
+  margin: 16px;
   margin-bottom: 50px;
 }
 .writing {
@@ -58,6 +60,7 @@
   background: #ff6363;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 50px;
+  margin: 16px;
 }
 
 .board_list {
@@ -67,6 +70,7 @@
   background-color: #fff;
   font-size: 23px;
   margin-bottom: 50px;
+  margin: 16px;
 }
 .calendar {
   width: 220px;
@@ -75,6 +79,7 @@
   border: 0.8px;
   background-color: transparent;
   margin-bottom: 20px;
+  margin: 16px;
 }
 .user-info .user-badge,
 .user-info .user-count {
