@@ -12,10 +12,10 @@
   margin-left: 50px;
 }
 
-.content {
+.body {
   flex-grow: 1;
   background-color: #f8f9fa; /* 메인 컨텐츠 배경색 */
-  /* 컨텐츠 스타일링 */
+  max-height: 100vh;
 }
 
 .header {

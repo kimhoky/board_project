@@ -1,5 +1,5 @@
-.board {
-  height: 120vh;
+.main {
+  height: 1000px;
   max-width: 2000px;
   width: calc(100%-10rem);
 }
@@ -13,12 +13,12 @@
 }
 .white_box {
   width: 250px;
-  height: 950px;
+  height: 900px;
   flex-shrink: 0;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(20px);
-  margin: 50px;
+  margin: 40px;
 }
 .icon {
   margin: 10px;
@@ -127,13 +127,7 @@
 .toggle-text {
   font-size: 10px;
 }
+
 .dark-mode {
-  background-color: #333; /* 다크 모드 배경색 */
-  color: #fff; /* 다크 모드 글자색 */
-}
-.dark-mode .board {
-  width: 3000px;
-  height: 30000px;
-  background-color: #555; /* 다크 모드에서의 board 배경색 */
-  color: #fff; /* 다크 모드에서의 글자색 */
+  background: rgba(0, 0, 0, 0.8);
 }

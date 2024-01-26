@@ -2,12 +2,14 @@
   width: 100%;
   background: #1b1b1b;
   color: white;
-  text-align: center;
+  text-align: left;
   padding: 70px;
   height: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  transform: translateY(150%);
 }
 
 footer {

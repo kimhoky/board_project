@@ -1,18 +1,24 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // react-router-dom에서 Link import
 import "../css/sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import { useTheme } from "../context/themeProvider";
 
 export default function Sidebar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [themeMode, toggleTheme] = useTheme(); // themeMode, toggleTheme 추가
 
   const handleToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
+    toggleTheme(); // 테마 전환 함수 호출
     console.log(`다크 모드 ${isDarkMode ? "비활성화" : "활성화"}`);
   };
   return (
-    <div className={`board ${isDarkMode ? "dark-mode" : ""}`}>
+    <div className="rankContainer">
       <aside className="sidebar">
+        {" "}
+        {/*사이드바*/}
         <div className="white_box">
           <div className="user">
             <FontAwesomeIcon icon={faCircle} className="icon" />
@@ -60,6 +66,31 @@ export default function Sidebar() {
           </div>
         </div>
       </aside>
+      <main className="body">
+        <header className="header">
+          <h1>2023 스트리머 랭킹</h1>
+          <div className="stats">{/* 통계 박스 */}</div>
+        </header>
+
+        <div className="tableContainer">
+          <table className="ranking-table-header">
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>아바타</th>
+                <th>이름</th>
+                <th>점수</th>
+              </tr>
+            </thead>
+          </table>
+          <div className="tableScroll">
+            <table className="ranking-table">
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        {/* ... */}
+      </main>
     </div>
   );
 }

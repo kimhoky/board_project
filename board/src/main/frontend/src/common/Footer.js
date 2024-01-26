@@ -27,11 +27,7 @@ export default function Footer() {
             <img src="./assets/image.png" alt="Twitter" />
           </a>
         </div>
-        <div className="footer-links">
-          <a href="/conditions-of-use">Conditions of Use</a>
-          <a href="/privacy-policy">Privacy & Policy</a>
-          <a href="/press-room">Press Room</a>
-        </div>
+
         <div className="copyright">
           © 2023프로젝트 김영우, 김경호, 이효민, 신민수, 박세준
         </div>
