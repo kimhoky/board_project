@@ -5,14 +5,11 @@ import reset from "styled-reset";
 export const lightTheme = {
   bgColor: "#ffffff",
   textColor: "#333333",
-
-  // ... other styles
 };
 
 export const darkTheme = {
   bgColor: "#1b1b1b",
-  textColor: "white",
-  // ... other styles
+  textColor: "black",
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -32,4 +29,5 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
+  
 `;

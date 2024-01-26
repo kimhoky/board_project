@@ -85,9 +85,11 @@
 .user-info .user-count {
   font-size: 20px !important;
 }
+
+/*토글 관련*/
 .toggleSwitch {
-  width: 30px; /* 토글 버튼 가로 크기 조절 */
-  height: 20px; /* 토글 버튼 세로 크기 조절 */
+  width: 30px;
+  height: 20px;
   display: block;
   position: relative;
   border-radius: 30px;
@@ -132,7 +134,7 @@
 .toggle-text {
   font-size: 10px;
 }
-
+/*다크모드*/
 .dark-mode {
   background: rgba(0, 0, 0, 0.8);
 }
