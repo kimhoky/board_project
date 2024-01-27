@@ -1,12 +1,11 @@
 package com.stream.board.controller;
 
 import com.stream.board.dto.BoardDTO;
+import com.stream.board.dto.MemberDTO;
 import com.stream.board.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +28,14 @@ public class BoardController {
     @GetMapping("/board/search")
     public List<BoardDTO> search(@RequestParam(value = "searchText") String keyword) {
         return boardService.searchPosts(keyword);
+    }
+
+    @PostMapping("/board/save")    // name값을 requestparam에 담아온다
+    public String save(@ModelAttribute BoardDTO BoardDTO) {
+        System.out.println("boarddto.save");
+        System.out.println("boardDTO = " + BoardDTO);
+        boardService.save(BoardDTO);
+
+        return "/index";
     }
 }
