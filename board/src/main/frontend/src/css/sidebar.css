@@ -180,9 +180,29 @@ select {
   max-width: 1600px;
   height: 1650px;
   border: none;
+  background-color: pink;
 }
-.banner {
-  width: 1000px;
+.banner_img {
+  width: 1350px;
   height: 200px;
   border-radius: 20px;
+}
+.board_set {
+  margin-bottom: 20px;
+  width: 900px;
+  height: 1000px;
+  background-color: #403c3c;
+}
+.board_1 {
+  background-color: #fff;
+  width: 900px;
+  height: 80px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.boomark {
+  border: none;
+  background: none;
 }

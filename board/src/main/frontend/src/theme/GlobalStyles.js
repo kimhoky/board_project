@@ -36,10 +36,10 @@ export const GlobalStyle = createGlobalStyle`
       background: ${({ theme }) => theme.bgColor};
     color: ${({ theme }) => theme.textColor};
 }
-.board
-{
-      background: ${({ theme }) => theme.bgColor};
-    color: ${({ theme }) => theme.textColor};
-}
+// .board
+// {
+//       background: ${({ theme }) => theme.bgColor};
+//     color: ${({ theme }) => theme.textColor};
+// }
 
 `;

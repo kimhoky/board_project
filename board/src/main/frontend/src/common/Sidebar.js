@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { useTheme } from "../context/themeProvider";
 import "../css/sidebar.css";
 
-export default function Sidebar() {
+export default function Sidebar({ board }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [themeMode, toggleTheme] = useTheme();
 
@@ -123,8 +124,36 @@ export default function Sidebar() {
         </div>
 
         <div className="board">
-          <img src=".\assets\banner_img.jpg" className="banner"></img>
-          <div className="post_set"></div>
+          <img src=".\assets\banner_img.jpg" className="banner_img" />
+          <div className="banner_button">
+            <Link to="/3">
+              <img src=".\assets\Afreeca.png" alt="Afreeca icon" />
+            </Link>
+            <Link to="/3">
+              <img src=".\assets\Chzzk.png" alt="Chzzk icon" />
+            </Link>
+            <Link to="/3">
+              <img src=".\assets\Twitch.png" alt="Twitch icon" />
+            </Link>{" "}
+            <Link to="/3">
+              <img src=".\assets\Youtube.png" alt="Youtube icon" />
+            </Link>
+            <button className="boomark">
+              <img src=".\assets\Bookmark.png" alt="Bookmark icon" />
+            </button>
+            <a>1234</a>
+          </div>
+
+          <div className="board_set">
+            <Link to={"/board/1"}>
+              {" "}
+              <div className="board_1">
+                <span>말머리1</span>
+                <h1>제목 1</h1>
+                <p>작성자</p>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
