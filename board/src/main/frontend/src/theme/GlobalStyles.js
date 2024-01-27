@@ -14,6 +14,7 @@ export const darkTheme = {
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
+
   body {
     background: ${({ theme }) => theme.bgColor};
     color: ${({ theme }) => theme.textColor};
@@ -29,5 +30,16 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
-  
+
+/*sidebar 헤더 */
+.header_control{
+      background: ${({ theme }) => theme.bgColor};
+    color: ${({ theme }) => theme.textColor};
+}
+.board
+{
+      background: ${({ theme }) => theme.bgColor};
+    color: ${({ theme }) => theme.textColor};
+}
+
 `;

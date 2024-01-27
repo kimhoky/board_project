@@ -35,6 +35,8 @@ export default function Sidebar() {
 
   return (
     <div className="rankContainer">
+      {" "}
+      {/*게시판 사이드바 */}
       <aside className={`sidebar ${themeMode}`}>
         <div className="white_box">
           <div className="user">
@@ -82,30 +84,49 @@ export default function Sidebar() {
           </div>
         </div>
       </aside>
-      <main className="body">
-        <header className="header">
-          <h1>2023 스트리머 랭킹</h1>
-          <div className="stats">{/* 통계 박스 */}</div>
-        </header>
-
-        <div className="tableContainer">
-          <table className="ranking-table-header">
-            <thead>
-              <tr>
-                <th>순위</th>
-                <th>아바타</th>
-                <th>이름</th>
-                <th>점수</th>
-              </tr>
-            </thead>
-          </table>
-          <div className="tableScroll">
-            <table className="ranking-table">
-              <tbody></tbody>
-            </table>
+      <div className="body">
+        <div className="header_control">
+          <div className="LB_button">
+            {" "}
+            {/*리스트 그리드 글쓰기 변경 */}
+            <button className="list_button">
+              list
+              {/* <FontAwesomeIcon icon="fa-solid fa-list" /> */}
+            </button>
+            <button className="grid_button">
+              grid
+              {/* <FontAwesomeIcon icon="fa-solid fa-table-cells-large" /> */}
+            </button>
+          </div>
+          <div className="billet_point">
+            {" "}
+            {/*말머리 */}
+            <span>말머리</span>
+            <button>말머리 몇개까지?</button>
+            <button>일반</button>
+            <button>질문</button>
+            <button>정보</button>
+            <button>파티</button>
+          </div>
+          <div className="billet_list">
+            <span className="billet_filter">말머리 필터</span>
+            <select name="billet_choice">
+              {" "}
+              {/* 말머리 listdownbox */}
+              <option value="말머리1"> 말머리1 </option>
+              <option value="말머리2"> 말머리2 </option>
+              <option value="말머리3"> 말머리3 </option>
+              <option value="말머리4"> 말머리4 </option>
+              <option value="말머리5"> 말머리5 </option>
+            </select>
           </div>
         </div>
-      </main>
+
+        <div className="board">
+          <img src=".\assets\banner_img.jpg" className="banner"></img>
+          <div className="post_set"></div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 /* 헤더 영역 스타일 */
 
 .mw {
-  max-width: 1000px;
+  max-width: 1550px;
   width: 100%;
   max-height: 120px;
   height: 116px;
@@ -42,5 +42,6 @@
   border: none;
   padding: 0;
   position: relative;
+
   right: 30px;
 }
