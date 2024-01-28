@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Board from "./pages/Board";
+
 import { ThemeProvider } from "./context/themeProvider";
 
 const App = () => {
