@@ -8,6 +8,7 @@ import "../css/sidebar.css";
 export default function Sidebar({ board }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [themeMode, toggleTheme] = useTheme();
+  const [isBookmarked, setIsBookmarked] = useState(false); //북마크
 
   useEffect(() => {
     // localStorage에서 저장된 값을 가져와서 설정
@@ -34,6 +35,12 @@ export default function Sidebar({ board }) {
     toggleTheme(newDarkMode ? "dark" : "light"); // 반대의 모드를 전달
   };
 
+  /* 북마크 클릭시 노란색으로 변경 및 콘솔로그 */
+  const handleBookmarkClick = () => {
+    setIsBookmarked(!isBookmarked);
+    console.log("북마크 클릭");
+  };
+
   return (
     <div className="rankContainer">
       {" "}
@@ -58,7 +65,7 @@ export default function Sidebar({ board }) {
             <li>32132</li>
             <li>321325</li>
           </div>
-          <button className="calendar">
+          <button className="calendar_button">
             <FontAwesomeIcon icon="fa-regular fa-calendar" />
             <span>캘린더</span>
           </button>
@@ -124,35 +131,71 @@ export default function Sidebar({ board }) {
         </div>
 
         <div className="board">
-          <img src=".\assets\banner_img.jpg" className="banner_img" />
-          <div className="banner_button">
-            <Link to="/3">
-              <img src=".\assets\Afreeca.png" alt="Afreeca icon" />
-            </Link>
-            <Link to="/3">
-              <img src=".\assets\Chzzk.png" alt="Chzzk icon" />
-            </Link>
-            <Link to="/3">
-              <img src=".\assets\Twitch.png" alt="Twitch icon" />
-            </Link>{" "}
-            <Link to="/3">
-              <img src=".\assets\Youtube.png" alt="Youtube icon" />
-            </Link>
-            <button className="boomark">
-              <img src=".\assets\Bookmark.png" alt="Bookmark icon" />
-            </button>
-            <a>1234</a>
+          <div className="banner_img_container">
+            <img src=".\assets\banner_img.jpg" className="banner_img" />
+            <div className="banner_button">
+              <Link to="https://www.afreecatv.com/">
+                <img src=".\assets\Afreeca.png" alt="Afreeca icon" />
+              </Link>
+              <Link to="https://chzzk.naver.com/">
+                <img src=".\assets\Chzzk.png" alt="Chzzk icon" />
+              </Link>
+              <Link to="https://www.twitch.tv/">
+                <img src=".\assets\Twitch.png" alt="Twitch icon" />
+              </Link>{" "}
+              <Link to="https://www.youtube.com/">
+                <img src=".\assets\Youtube.png" alt="Youtube icon" />
+              </Link>
+              <button
+                className={`bookmark ${isBookmarked ? "active" : ""}`}
+                onClick={handleBookmarkClick}
+              >
+                <img src=".\assets\Bookmark.png" alt="Bookmark icon" />
+                <a className="bookmark_num">1234</a>
+              </button>
+            </div>
           </div>
+          <div className="board_container">
+            <div className="board_set">
+              <Link to={"/board/1"}>
+                {" "}
+                <div className="board_1">
+                  <span>말머리1</span>
+                  <h1>제목 1</h1>
+                  <p>작성자</p>
+                </div>
+              </Link>
+              <Link to={"/board/1"}>
+                {" "}
+                <div className="board_1">
+                  <span>말머리1</span>
+                  <h1>제목 1</h1>
+                  <p>작성자</p>
+                </div>
+              </Link>{" "}
+              <Link to={"/board/1"}>
+                {" "}
+                <div className="board_1">
+                  <span>말머리1</span>
+                  <h1>제목 1</h1>
+                  <p>작성자</p>
+                </div>
+              </Link>{" "}
+              <Link to={"/board/1"}>
+                {" "}
+                <div className="board_1">
+                  <span>말머리1</span>
+                  <h1>제목 1</h1>
+                  <p>작성자</p>
+                </div>
+              </Link>
+            </div>
 
-          <div className="board_set">
-            <Link to={"/board/1"}>
-              {" "}
-              <div className="board_1">
-                <span>말머리1</span>
-                <h1>제목 1</h1>
-                <p>작성자</p>
-              </div>
-            </Link>
+            {/* 캘린더는 추후 api이용하자 일단 자리만 잡는걸로 */}
+            <div className="calendar_container">
+              <div className="calendar"> 캘린더</div>
+              <div className="calendar_box">캘린더 내용을 입력해주세요</div>
+            </div>
           </div>
         </div>
       </div>
