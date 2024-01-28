@@ -18,7 +18,11 @@ spring:
     hibernate:
       ddl-auto: validate
 
+  jwt:
+    secret: aaabbbcccdddeeeqwerqwerqwerqwer8888zxcvzxcv
+    expiration: 36000000
 
-      youtube:
+
+  youtube:
         api:
           key: {AIzaSyC1_SYmCiEE5-YlhquO92kqYd-mHiqY0-s}

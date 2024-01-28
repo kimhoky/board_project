@@ -34,6 +34,11 @@ public class BoardService {
         boardingRepository.save(boardEntity);
     }
 
+    public void deletePost(String keyword){
+
+        boardRepository.deleteDataByKeyword(keyword);
+    }
+
 
 
 

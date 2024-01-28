@@ -1,5 +1,6 @@
 package com.stream.board.controller;
 
+import com.stream.board.JwtTokenProvider;
 import com.stream.board.dto.MemberDTO;
 import com.stream.board.repository.LoginRepository;
 import com.stream.board.repository.MemberRepository;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ import org.springframework.ui.Model;
 import com.stream.board.model.BoardMember;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -31,12 +36,15 @@ public class MemberController {
 
     private final SessionManager sessionManager;
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
 
         if(session == null) {
-            return "login";
+            return "로그인";
         }
 
         String memberId = (String)session.getAttribute(SessionConst.sessionId);
@@ -44,11 +52,11 @@ public class MemberController {
         BoardMember member = findMemberOptional.orElse(null);
 
         if(member == null) {
-            return "login";
+            return "로그인";
         }
 
         model.addAttribute("member", member);
-        return "/";
+        return memberId;
     }
 
     @PostMapping("/member/save")    // name값을 requestparam에 담아온다
@@ -66,13 +74,16 @@ public class MemberController {
 
         if (loginMember == null) {
             System.out.println(sessionManager.getSession(request));
-            return member.toString();
+            return "false";
         }
 
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.sessionId, loginMember.getUser_ID());
         System.out.println(session.getAttribute(SessionConst.sessionId));
-        return "true";
+
+        String token = jwtTokenProvider.generateToken(loginMember.getUser_ID());
+
+        return token;
     }
 
     @PostMapping("/member/logout")

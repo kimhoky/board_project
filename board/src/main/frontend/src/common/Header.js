@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import "../css/header.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
+  const [loginID, setLoginID] = useState("");
+
   const [searchText, setSearchText] = useState(""); //현재 검색어
 
   const handleInputChange = (e) => {
@@ -43,6 +45,42 @@ export default function Header() {
       handleSearch(); // 검색 수행
     }
   };
+  useEffect(() => {
+      // useEffect 내에서 async 함수를 사용하기 위한 별도의 함수
+      const fetchUserData = async () => {
+        try {
+          // localStorage에서 토큰 가져오기
+          const token = localStorage.getItem('userToken');
+          console.log(token);
+
+          if (token != null) {
+            // 토큰을 서버에 전달하여 사용자 정보 가져오기
+            const response = await axios.get('/api/user', {
+              headers: {
+                Authorization: `${ token }`,
+              },
+            });
+            console.log('Server Response:', response.data.username);
+
+
+            // 사용자 아이디 추출 및 상태 업데이트
+            const userID = response.data.username;
+            console.log(userID);
+            setLoginID(userID);
+          }else {
+                   setLoginID("로그인");
+                   }
+        }
+        catch (error) {
+          // 에러 처리
+          console.error('Error fetching user data:', error);
+        }
+      };
+      // fetchUserData 함수 호출
+          fetchUserData();
+        }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+
+
   return (
     <header className="mw">
       <h1>
@@ -69,7 +107,7 @@ export default function Header() {
       <nav>
         {" "}
         {/* 네브바 버튼 */}
-        <Link to="/1">1</Link>
+        <Link className="로그인" to="/login">{ loginID }</Link>
         <Link to="/2">2</Link>
         <Link to="/3">3</Link>
       </nav>
