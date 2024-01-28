@@ -1,5 +1,5 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import Main from "./pages/Main";
@@ -9,13 +9,20 @@ import Board from "./pages/Board";
 import { ThemeProvider } from "./context/themeProvider";
 
 const App = () => {
+    const [token, setToken] = useState(null);
+    const [userId, setUserId] = useState('');
+
+            const handleLogin = (newToken, newUserId) => {
+                setToken(newToken);
+                setUserId(newUserId);
+            };
   return (
     <Router>
       <ThemeProvider>
         <Header />
         <Routes>
           <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login onLogin={handleLogin} />} />
           <Route path="main" element={<Main />} />
           <Route path="board" element={<Board />} />
         </Routes>

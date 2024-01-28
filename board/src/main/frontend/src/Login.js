@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Login() {
+const Login = ({ onLogin }) => {
     const [User_ID, setUser_ID] = useState('');
     const [User_password, setUser_password] = useState('');
 
@@ -12,13 +12,20 @@ function Login() {
             const response = await axios.post('/member/login', null, { params : {
                 User_ID: User_ID,
                 User_password: User_password
-            }})
+            }});
+            const token = response.data.token;
+                  onLogin(token, User_ID);
             if (response.data == false) {
                  console.log(response.data);
                  document.location.href = "/login";
-            } else if (response.data == true) {
+            } else if (response.data != null) {
                  console.log(response.data);
                  document.location.href = "/";
+
+                 localStorage.setItem('userToken', response.data);
+
+                                 // onLogin 함수 호출 (부모 컴포넌트에서 전달받은 콜백 함수)
+                                 onLogin(token, User_ID);
             } else {
                  console.log("잘못된 접근");
                  console.log(response.data);
