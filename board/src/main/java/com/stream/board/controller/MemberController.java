@@ -90,9 +90,9 @@ public class MemberController {
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if(session == null) {
-            return "/";
+            return "/main";
         }
         session.invalidate();
-        return "/";
+        return "/main";
     }
 }

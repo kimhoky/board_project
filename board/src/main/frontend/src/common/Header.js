@@ -71,8 +71,10 @@ export default function Header() {
             const userID = response.data.username;
             console.log(userID);
             setLoginID(userID);
-            setDynamicPath("");
-            setDynamicEvent(handleLogout);
+            setDynamicPath("/main");
+
+            // 토큰이 있을 때만 로그아웃 이벤트를 설정
+            setDynamicEvent(() => handleLogout);
           }else {
                    setLoginID("로그인");
                    }
@@ -84,18 +86,26 @@ export default function Header() {
       };
       // fetchUserData 함수 호출
           fetchUserData();
-        }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+  }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
 
   const handleLogout = async () => {
+    const userConfirmed = window.confirm("로그아웃 하시겠습니까?");
+        // If the user confirms, proceed with the logout
+        if (userConfirmed) {
             try {
-              // 클라이언트에서 필요한 로그아웃 처리 (예: 로컬 스토리지에서 토큰 삭제 등)
-              localStorage.removeItem('userToken');
-              // 서버에 로그아웃 요청을 보냄
-              await axios.post('/member/logout');
+                // 클라이언트에서 필요한 로그아웃 처리 (예: 로컬 스토리지에서 토큰 삭제 등)
+                localStorage.removeItem('userToken');
+
+                // 서버에 로그아웃 요청을 보냄
+                await axios.post('/member/logout');
+
+                document.location.href = "/main";
             } catch (error) {
-              console.error('Error during logout:', error);
+                console.error('Error during logout:', error);
             }
+        }
   };
+
 
   return (
     <header className="mw">
