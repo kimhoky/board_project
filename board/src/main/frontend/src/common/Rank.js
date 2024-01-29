@@ -65,7 +65,7 @@ export default function StreamerRankings() {
           <option value="Ford"> Ford </option>
         </select>
       </aside>
-      <main className="body">
+      <main className="rank_body">
         <header className="header">
           <h1>2023 스트리머 랭킹</h1>
           <div className="stats">{/* 통계 박스 */}</div>

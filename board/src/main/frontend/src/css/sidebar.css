@@ -185,7 +185,7 @@ select {
   position: relative;
   max-width: 1500px;
   height: 250px;
-  background-color: #f03d3d;
+  /* background-color: #f03d3d; */
 }
 .banner_img {
   max-width: 1500px;
@@ -217,7 +217,7 @@ select {
 .board_set {
   width: 1000px;
   height: 1000px;
-  background-color: #403c3c;
+  /* background-color: #403c3c; */
   margin-top: 60px;
 }
 .board_1 {
@@ -232,6 +232,7 @@ select {
   font-size: 20px;
   margin: 0 auto;
   margin-bottom: 20px;
+  border: 1px solid #403c3c;
 }
 /*캘린더*/
 .calendar_container {
