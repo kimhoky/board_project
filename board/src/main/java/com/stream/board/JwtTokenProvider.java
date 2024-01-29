@@ -2,28 +2,31 @@ package com.stream.board;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
 
 @Component
+@PropertySource(value = {"classpath:application.yml"})
 public class JwtTokenProvider {
-
     @Value("${jwt.expiration}")
     private Long expirationDate;
 
-    @Value("${jwt.secret}")
-    private String secret;
+    private final String secret;
 
-    private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    private final SecretKey secretKey;
+
+    public JwtTokenProvider(@Value("${jwt.secret}") String secret) {
+        if (secret == null) {
+            throw new IllegalArgumentException("JWT secret cannot be null");
+        }
+        this.secret = secret;
+        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
+    }
 
 
     public String generateToken(String userId) {
