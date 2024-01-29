@@ -50,6 +50,11 @@ export default function Header() {
     }
   };
   useEffect(() => {
+    // 현재 주소를 가져와서 localStorage에 저장
+    const currentPath = window.location.pathname;
+    localStorage.setItem('lastVisitedPath', currentPath);
+  }, []);
+  useEffect(() => {
       // useEffect 내에서 async 함수를 사용하기 위한 별도의 함수
       const fetchUserData = async () => {
         try {
@@ -71,7 +76,7 @@ export default function Header() {
             const userID = response.data.username;
             console.log(userID);
             setLoginID(userID);
-            setDynamicPath("/main");
+            setDynamicPath(localStorage.getItem('lastVisitedPath'));
 
             // 토큰이 있을 때만 로그아웃 이벤트를 설정
             setDynamicEvent(() => handleLogout);
@@ -99,7 +104,7 @@ export default function Header() {
                 // 서버에 로그아웃 요청을 보냄
                 await axios.post('/member/logout');
 
-                document.location.href = "/main";
+                document.location.href = localStorage.getItem('lastVisitedPath');
             } catch (error) {
                 console.error('Error during logout:', error);
             }
