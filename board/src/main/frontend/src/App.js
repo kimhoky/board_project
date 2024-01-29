@@ -7,6 +7,7 @@ import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Board from "./pages/Board";
 import Writing from "./pages/Writing";
+import Post from "./pages/Post";
 
 import { ThemeProvider } from "./context/themeProvider";
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="main" element={<Main />} />
           <Route path="board" element={<Board />} />
           <Route path="writing" element={<Writing />} />
+          <Route path="post" element={<Post />} />
         </Routes>
         <Footer />
       </ThemeProvider>

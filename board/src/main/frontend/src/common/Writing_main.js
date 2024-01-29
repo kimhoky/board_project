@@ -49,7 +49,9 @@ export default function Writing() {
       </div>
       <hr></hr>
       {/* 제목입력 */}
-      <input className="title" placeholder="제목을 입력해주세요"></input>
+      <form>
+        <input className="title" placeholder="제목을 입력해주세요"></input>
+      </form>
       <div className="writing_box">
         <div className="tool">
           <div className="html_toolbar">
@@ -96,20 +98,22 @@ export default function Writing() {
             <button onClick={handleLineHeightChange}>줄간격</button>
           </div>
         </div>
-        <textarea
-          className={`writing_text ${isBold ? "bold" : ""} ${
-            isItalic ? "italic" : ""
-          } ${isUnderline ? "underline" : ""} ${
-            isStrikeThrough ? "strikethrough" : ""
-          }`}
-          style={{
-            color: textColor,
-            backgroundColor,
-            textAlign: alignment,
-            lineHeight: `${lineHeight}em`,
-          }}
-          placeholder="내용입력"
-        ></textarea>
+        <form>
+          <textarea
+            className={`writing_text ${isBold ? "bold" : ""} ${
+              isItalic ? "italic" : ""
+            } ${isUnderline ? "underline" : ""} ${
+              isStrikeThrough ? "strikethrough" : ""
+            }`}
+            style={{
+              color: textColor,
+              backgroundColor,
+              textAlign: alignment,
+              lineHeight: `${lineHeight}em`,
+            }}
+            placeholder="내용입력"
+          ></textarea>
+        </form>
         <button className="registration">등록</button>
       </div>
     </div>

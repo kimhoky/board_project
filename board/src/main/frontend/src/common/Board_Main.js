@@ -76,7 +76,7 @@ export default function TestSidebar({ board }) {
 
       <div className="board_container">
         <div className="board_set">
-          <Link to={"/board/1"}>
+          <Link to={"/Post"}>
             {" "}
             <div className="board_1">
               <span>말머리1</span>
