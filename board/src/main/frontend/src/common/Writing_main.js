@@ -1,0 +1,117 @@
+import React, { useState } from "react";
+import "../css/writing.css";
+
+export default function Writing() {
+  const [isBold, setIsBold] = useState(false);
+  const [isItalic, setIsItalic] = useState(false);
+  const [isUnderline, setIsUnderline] = useState(false);
+  const [isStrikeThrough, setIsStrikeThrough] = useState(false);
+  const [textColor, setTextColor] = useState("black");
+  const [backgroundColor, setBackgroundColor] = useState("white");
+  const [alignment, setAlignment] = useState("left");
+  const [lineHeight, setLineHeight] = useState(1.5);
+
+  const toggleBold = () => setIsBold(!isBold);
+  const toggleItalic = () => setIsItalic(!isItalic);
+  const toggleUnderline = () => setIsUnderline(!isUnderline);
+  const toggleStrikeThrough = () => setIsStrikeThrough(!isStrikeThrough);
+
+  const changeTextColor = () => {
+    const newColor = prompt("Enter text color:");
+    setTextColor(newColor || "black");
+  };
+
+  const changeBackgroundColor = () => {
+    const newColor = prompt("Enter background color:");
+    setBackgroundColor(newColor || "white");
+  };
+
+  const handleAlignmentChange = (alignmentValue) => () =>
+    setAlignment(alignmentValue);
+
+  const handleLineHeightChange = () => {
+    const newLineHeight = parseFloat(prompt("Enter line height:"));
+    if (!isNaN(newLineHeight) && newLineHeight > 0) {
+      setLineHeight(newLineHeight);
+    }
+  };
+  return (
+    <div className="writing_container">
+      <div className="billet_point">
+        {" "}
+        {/*말머리 */}
+        <span>말머리</span>
+        <button>말머리 몇개까지?</button>
+        <button>일반</button>
+        <button>질문</button>
+        <button>정보</button>
+        <button>파티</button>
+      </div>
+      <hr></hr>
+      {/* 제목입력 */}
+      <input className="title" placeholder="제목을 입력해주세요"></input>
+      <div className="writing_box">
+        <div className="tool">
+          <div className="html_toolbar">
+            <button>사진</button>
+            <button>동영상</button>
+            <button>이모티콘</button>
+            <button>구분선</button>
+            <button>파일</button>
+            <button>링크</button>
+            <button>소스코드</button>
+            <button>표</button>
+            <button>수식</button>
+          </div>
+          <div className="html_toolbar2">
+            <select name="toolbar2">
+              {" "}
+              {/*html boolbar2 주로 글자관련 나중에 api받아야할듯 */}
+              <option value="본문"> 본문 </option>
+              <option value="인용구"> 인용구 </option>
+            </select>
+            <select name="font_style">
+              <option value="기본서체">기본서체</option>
+              <option value="나눔고딕">나눔고딕</option>
+              <option value="나눔스퀘어">나눔스퀘어</option>
+            </select>
+            <select name="font_size">
+              <option value="11">11</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+            <button onClick={toggleBold}>굵게</button>
+            <button onClick={toggleItalic}>기울기</button>
+            <button onClick={toggleUnderline}>밑줄</button>
+            <button onClick={toggleStrikeThrough}>취소선</button>
+            <button onClick={changeTextColor}>글자색 변경</button>
+            {/*글자색 현재 입력해야함 나중에 수정 */}
+            <button onClick={changeBackgroundColor}>글자 배경색 변경</button>
+            {/*글자색 현재 입력해야함 나중에 수정 */}
+            <button onClick={handleAlignmentChange("left")}>좌측정렬</button>
+            <button onClick={handleAlignmentChange("center")}>
+              가운데정렬
+            </button>
+            <button onClick={handleAlignmentChange("right")}>우측정렬</button>
+            <button onClick={handleLineHeightChange}>줄간격</button>
+          </div>
+        </div>
+        <textarea
+          className={`writing_text ${isBold ? "bold" : ""} ${
+            isItalic ? "italic" : ""
+          } ${isUnderline ? "underline" : ""} ${
+            isStrikeThrough ? "strikethrough" : ""
+          }`}
+          style={{
+            color: textColor,
+            backgroundColor,
+            textAlign: alignment,
+            lineHeight: `${lineHeight}em`,
+          }}
+          placeholder="내용입력"
+        ></textarea>
+        <button className="registration">등록</button>
+      </div>
+    </div>
+  );
+}

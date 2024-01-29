@@ -42,7 +42,7 @@ export default function Sidebar({ board }) {
   };
 
   return (
-    <div className="rankContainer">
+    <div className="sidebar_container">
       {" "}
       {/*게시판 사이드바 */}
       <aside className={`sidebar ${themeMode}`}>
@@ -54,10 +54,13 @@ export default function Sidebar({ board }) {
           <button className="home">
             <span>home</span>
           </button>
-          <button className="writing">
-            <FontAwesomeIcon icon="fa-solid fa-chalkboard" />
-            <span>글쓰기</span>
-          </button>
+          <Link to="/Writing">
+            <button className="writing">
+              <FontAwesomeIcon icon="fa-solid fa-chalkboard" />
+              <span>글쓰기</span>
+            </button>
+          </Link>
+
           <div className="board_list">
             <span>게시판 목록</span>
             <li>12345</li>

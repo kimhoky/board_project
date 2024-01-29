@@ -1,7 +1,10 @@
 .body {
-  height: 100000px;
-  max-width: 2000px;
-  width: calc(100%-10rem);
+  height: 1000px;
+  max-width: 2150px;
+}
+.sidebar_container {
+  max-width: 1000px;
+  max-height: 1300px;
 }
 
 .sidebar {
@@ -169,7 +172,7 @@
   background-color: white;
 }
 .billet_list > span {
-  background-color: #a0a0a0;
+  background-color: #690202;
   border-radius: 10px;
 }
 select {
@@ -220,7 +223,7 @@ select {
 }
 .board_1 {
   background-color: #fff;
-  width: 900px;
+  width: 1000px;
   height: 80px;
   border-radius: 10px;
   margin-bottom: 10px;

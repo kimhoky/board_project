@@ -6,17 +6,18 @@ import Main from "./pages/Main";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Board from "./pages/Board";
+import Writing from "./pages/Writing";
 
 import { ThemeProvider } from "./context/themeProvider";
 
 const App = () => {
-    const [token, setToken] = useState(null);
-    const [userId, setUserId] = useState('');
+  const [token, setToken] = useState(null);
+  const [userId, setUserId] = useState("");
 
-            const handleLogin = (newToken, newUserId) => {
-                setToken(newToken);
-                setUserId(newUserId);
-            };
+  const handleLogin = (newToken, newUserId) => {
+    setToken(newToken);
+    setUserId(newUserId);
+  };
   return (
     <Router>
       <ThemeProvider>
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="login" element={<Login onLogin={handleLogin} />} />
           <Route path="main" element={<Main />} />
           <Route path="board" element={<Board />} />
+          <Route path="writing" element={<Writing />} />
         </Routes>
         <Footer />
       </ThemeProvider>

@@ -24,7 +24,6 @@
   left: 100px;
 }
 .header div::before {
-  content: "";
   width: 1px;
   height: 10px;
   position: absolute;
