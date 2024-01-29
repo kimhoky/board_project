@@ -79,7 +79,6 @@ public class MemberController {
 
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.sessionId, loginMember.getUser_ID());
-        System.out.println(session.getAttribute(SessionConst.sessionId));
 
         String token = jwtTokenProvider.generateToken(loginMember.getUser_ID());
 

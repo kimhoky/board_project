@@ -39,7 +39,6 @@ public class JwtTokenProvider {
     }
 
     public String getUserIdFromToken(String token) {
-        System.out.println("getUserIdFromToken " + token);
         try {
             Claims claims = Jwts.parser()
                     .verifyWith(secretKey)
