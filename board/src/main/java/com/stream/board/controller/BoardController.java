@@ -3,6 +3,7 @@ package com.stream.board.controller;
 import com.stream.board.dto.BoardDTO;
 import com.stream.board.dto.MemberDTO;
 import com.stream.board.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 public class BoardController {
     private BoardService boardService;
 
+@Autowired
     public BoardController(BoardService boardService){
         this.boardService = boardService;
     }
@@ -35,8 +37,7 @@ public class BoardController {
         System.out.println("boarddto.save");
         System.out.println("boardDTO = " + BoardDTO);
         boardService.save(BoardDTO);
-
-        return "/index";
+        return "redirect:/board";
     }
 
     @GetMapping("/board/del")

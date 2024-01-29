@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/writing.css";
+import axios from "axios";
 
 export default function Writing() {
+const [boardTitle, setBoardTitle] = useState('');
+  const [boardContent, setBoardContent] = useState('');
+  const [loginID, setLoginID] = useState("");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
@@ -10,6 +14,9 @@ export default function Writing() {
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [alignment, setAlignment] = useState("left");
   const [lineHeight, setLineHeight] = useState(1.5);
+
+
+
 
   const toggleBold = () => setIsBold(!isBold);
   const toggleItalic = () => setIsItalic(!isItalic);
@@ -35,8 +42,74 @@ export default function Writing() {
       setLineHeight(newLineHeight);
     }
   };
+useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('userToken');
+
+        if (token != null) {
+          const response = await axios.get('/api/user', {
+            headers: {
+              Authorization: `${token}`,
+            },
+          });
+
+          const userID = response.data.username;
+          setLoginID(userID);
+        } else {
+          setLoginID('로그인');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleTitleChange = (e) => {
+    setBoardTitle(e.target.value);
+  };
+
+  const handleContentChange = (e) => {
+    setBoardContent(e.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+
+
+    try {
+      const response = await axios.post(
+        '/board/save', null, {params :
+        {
+          Board_title: boardTitle,
+          Board_content: boardContent,
+          Community_ID: "1",
+          Writer_ID: loginID,
+        }}
+
+      );
+
+      console.log('Server Response:', response.data);
+
+      // 폼 제출 후에 /board로 이동
+      window.location.href = '/board';
+    } catch (error) {
+      console.error('Error saving board data:', error);
+    }
+  };
+
+
   return (
+
+
+
+
+
     <div className="writing_container">
+
       <div className="billet_point">
         {" "}
         {/*말머리 */}
@@ -49,9 +122,9 @@ export default function Writing() {
       </div>
       <hr></hr>
       {/* 제목입력 */}
-      <form>
-        <input className="title" placeholder="제목을 입력해주세요"></input>
-      </form>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="Board_title" placeholder="제목을 입력해주세요" value={boardTitle} onChange={handleTitleChange}/>
+
       <div className="writing_box">
         <div className="tool">
           <div className="html_toolbar">
@@ -98,7 +171,7 @@ export default function Writing() {
             <button onClick={handleLineHeightChange}>줄간격</button>
           </div>
         </div>
-        <form>
+
           <textarea
             className={`writing_text ${isBold ? "bold" : ""} ${
               isItalic ? "italic" : ""
@@ -111,11 +184,18 @@ export default function Writing() {
               textAlign: alignment,
               lineHeight: `${lineHeight}em`,
             }}
+            name="Board_content"
             placeholder="내용입력"
+            value={boardContent}
+                      onChange={handleContentChange}
           ></textarea>
-        </form>
-        <button className="registration">등록</button>
+
+        <button type="submit" className="registration">등록</button>
+
       </div>
+</form>
+
     </div>
+
   );
 }

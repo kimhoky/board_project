@@ -35,4 +35,23 @@ public void deleteDataByKeyword(String keyword){
         jdbcTemplate.query(sql, new Object[]{keyword}, new BeanPropertyRowMapper<>(BoardDTO.class));
 
 }
+    public void save(BoardDTO boardDTO) {
+        String sql = "INSERT INTO board (Community_ID, Writer_ID, Board_tag, Board_title, Board_content, Board_media, Board_recomend, Board_view, Board_write_date, Board_modify_date, Board_delete_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        jdbcTemplate.update(sql,
+                boardDTO.getCommunity_ID(),
+                boardDTO.getWriter_ID(),
+                boardDTO.getBoard_tag(),
+                boardDTO.getBoard_title(),
+                boardDTO.getBoard_content(),
+                boardDTO.getBoard_media(),
+                boardDTO.getBoard_recomend(),
+                boardDTO.getBoard_view(),
+                boardDTO.getBoard_write_date(),
+                boardDTO.getBoard_modify_date(),
+                boardDTO.getBoard_delete_date());
+    }
+
+
 }

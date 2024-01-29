@@ -19,11 +19,14 @@ import static com.stream.board.dto.BoardDTO.toBoardDTO;
 @RequiredArgsConstructor
 public class BoardService {
     private BoardRepository boardRepository;
-    private  BoardingRepository boardingRepository;
+  //  private  BoardingRepository boardingRepository;
     @Autowired
     public  BoardService(BoardRepository boardRepository){
         this.boardRepository=boardRepository;
     }
+//
+//    @Autowired
+//    public BoardService(BoardingRepository boardingRepository){this.boardingRepository=boardingRepository;}
     @Transactional
     public List<BoardDTO> searchPosts(String keyword) {
         return boardRepository.findDataByKeyword(keyword);
@@ -31,7 +34,7 @@ public class BoardService {
 
     public void save(BoardDTO BoardDTO) {
         BoardEntity boardEntity = BoardEntity.toBoardEntity(BoardDTO);
-        boardingRepository.save(boardEntity);
+        boardRepository.save(BoardDTO);
     }
 
     public void deletePost(String keyword){
