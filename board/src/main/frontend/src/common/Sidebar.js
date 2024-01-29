@@ -70,6 +70,7 @@ export default function Sidebar({ board }) {
           </div>
           <button className="calendar_button">
             <FontAwesomeIcon icon="fa-regular fa-calendar" />
+
             <span>캘린더</span>
           </button>
           <div className="user-info">
