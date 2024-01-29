@@ -9,7 +9,9 @@ export default function Post_Content() {
         <form>
           <span>말머리</span>
 
-          <input className="title" placeholder="제목을 입력해주세요"></input>
+          <textarea className="title" readOnly>
+            오늘 팔켓몬 다 죽었다 ㅋㅋ
+          </textarea>
         </form>
         <button className="block">차단하기</button>
         <span>작성자</span>
@@ -43,7 +45,9 @@ export default function Post_Content() {
             </Link>
           </div>
           <form>
-            <textarea className="post_input">3232</textarea>
+            <textarea className="post_input" readOnly>
+              3232
+            </textarea>
           </form>
           <div className="gd">
             <button className="good">좋아요:0</button>

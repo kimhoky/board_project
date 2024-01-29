@@ -20,7 +20,7 @@ const Login = ({ onLogin }) => {
                  document.location.href = "/login";
             } else if (response.data != null) {
                  console.log(response.data);
-                 document.location.href = "/main";
+                 document.location.href = localStorage.getItem('lastVisitedPath');
 
                  localStorage.setItem('userToken', response.data);
 
