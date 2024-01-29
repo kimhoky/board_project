@@ -1,0 +1,72 @@
+.writing_container {
+  max-width: 1500px;
+  max-height: 1300px;
+  width: 1500px;
+  height: 1300px;
+  background-color: red;
+}
+/*말머리*/
+.billet_point {
+  margin-top: 40px;
+  border: 1px solid #403c3c;
+  border-radius: 10px;
+  background-color: white;
+  border-bottom: 13px solid #eaeaea;
+}
+.billet_point > button {
+  margin: 5px;
+  background: none;
+  border: none;
+  border-radius: 5px;
+}
+/*글 제목*/
+.title {
+  width: 600px;
+  height: 30px;
+  margin: 10px;
+}
+/*글 박스*/
+.writing_box {
+  width: 1220px;
+  height: 900px;
+  background-color: blue;
+}
+.tool {
+  width: 1000px;
+  height: 100px;
+  background-color: aqua;
+}
+/*글 툴박스 상단 사진 동영상등 버튼*/
+.html_toolbar {
+  width: 30px;
+  height: 50px;
+  display: flex;
+  margin: 10px;
+}
+/*글 툴박스2 하단 본문/글자크기/굵기등 */
+.html_toolbar2 {
+  display: flex;
+  margin: 10px;
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.underline {
+  text-decoration: underline;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.writing_text {
+  width: 1200px;
+  height: 650px;
+  margin: 10px;
+  vertical-align: top;
+  background-color: aquamarine;
+}
+.registration {
+  margin-right: auto;
+}

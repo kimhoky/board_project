@@ -38,4 +38,9 @@ public class BoardController {
 
         return "/index";
     }
+
+    @GetMapping("/board/del")
+    public void delete(@RequestParam(value = "deleteboardid") String keyword){
+        boardService.deletePost(keyword);
+    }
 }
