@@ -10,6 +10,10 @@ export default function Header() {
 
   const [searchText, setSearchText] = useState(""); //현재 검색어
 
+  const [dynamicPath, setDynamicPath] = useState('/login');
+
+  const [dynamicEvent, setDynamicEvent] = useState();
+
   const handleInputChange = (e) => {
     //검색어 업데이트
     setSearchText(e.target.value);
@@ -67,6 +71,8 @@ export default function Header() {
             const userID = response.data.username;
             console.log(userID);
             setLoginID(userID);
+            setDynamicPath("");
+            setDynamicEvent(handleLogout);
           }else {
                    setLoginID("로그인");
                    }
@@ -80,6 +86,16 @@ export default function Header() {
           fetchUserData();
         }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
 
+  const handleLogout = async () => {
+            try {
+              // 클라이언트에서 필요한 로그아웃 처리 (예: 로컬 스토리지에서 토큰 삭제 등)
+              localStorage.removeItem('userToken');
+              // 서버에 로그아웃 요청을 보냄
+              await axios.post('/member/logout');
+            } catch (error) {
+              console.error('Error during logout:', error);
+            }
+  };
 
   return (
     <header className="mw">
@@ -107,7 +123,7 @@ export default function Header() {
       <nav>
         {" "}
         {/* 네브바 버튼 */}
-        <Link className="로그인" to="/login">{ loginID }</Link>
+        <Link className="로그인" to={ dynamicPath } onClick={ dynamicEvent }>{ loginID }</Link>
         <Link to="/2">2</Link>
         <Link to="/3">3</Link>
       </nav>
