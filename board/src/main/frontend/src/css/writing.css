@@ -6,14 +6,14 @@
   background-color: red;
 }
 /*말머리*/
-.billet_point {
+.writing_billet {
   margin-top: 40px;
   border: 1px solid #403c3c;
   border-radius: 10px;
   background-color: white;
   border-bottom: 13px solid #eaeaea;
 }
-.billet_point > button {
+.writing_billet > button {
   margin: 5px;
   background: none;
   border: none;

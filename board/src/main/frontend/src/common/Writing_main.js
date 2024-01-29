@@ -3,8 +3,8 @@ import "../css/writing.css";
 import axios from "axios";
 
 export default function Writing() {
-const [boardTitle, setBoardTitle] = useState('');
-  const [boardContent, setBoardContent] = useState('');
+  const [boardTitle, setBoardTitle] = useState("");
+  const [boardContent, setBoardContent] = useState("");
   const [loginID, setLoginID] = useState("");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
@@ -14,9 +14,6 @@ const [boardTitle, setBoardTitle] = useState('');
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [alignment, setAlignment] = useState("left");
   const [lineHeight, setLineHeight] = useState(1.5);
-
-
-
 
   const toggleBold = () => setIsBold(!isBold);
   const toggleItalic = () => setIsItalic(!isItalic);
@@ -42,13 +39,13 @@ const [boardTitle, setBoardTitle] = useState('');
       setLineHeight(newLineHeight);
     }
   };
-useEffect(() => {
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem("userToken");
 
         if (token != null) {
-          const response = await axios.get('/api/user', {
+          const response = await axios.get("/api/user", {
             headers: {
               Authorization: `${token}`,
             },
@@ -57,10 +54,10 @@ useEffect(() => {
           const userID = response.data.username;
           setLoginID(userID);
         } else {
-          setLoginID('로그인');
+          setLoginID("로그인");
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
 
@@ -78,39 +75,28 @@ useEffect(() => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
-
     try {
-      const response = await axios.post(
-        '/board/save', null, {params :
-        {
+      const response = await axios.post("/board/save", null, {
+        params: {
           Board_title: boardTitle,
           Board_content: boardContent,
           Community_ID: "1",
           Writer_ID: loginID,
-        }}
+        },
+      });
 
-      );
-
-      console.log('Server Response:', response.data);
+      console.log("Server Response:", response.data);
 
       // 폼 제출 후에 /board로 이동
-      window.location.href = '/board';
+      window.location.href = "/board";
     } catch (error) {
-      console.error('Error saving board data:', error);
+      console.error("Error saving board data:", error);
     }
   };
 
-
   return (
-
-
-
-
-
     <div className="writing_container">
-
-      <div className="billet_point">
+      <div className="writing_billet">
         {" "}
         {/*말머리 */}
         <span>말머리</span>
@@ -123,54 +109,60 @@ useEffect(() => {
       <hr></hr>
       {/* 제목입력 */}
       <form onSubmit={handleSubmit}>
-        <input type="text" name="Board_title" placeholder="제목을 입력해주세요" value={boardTitle} onChange={handleTitleChange}/>
+        <input
+          type="text"
+          name="Board_title"
+          placeholder="제목을 입력해주세요"
+          value={boardTitle}
+          onChange={handleTitleChange}
+        />
 
-      <div className="writing_box">
-        <div className="tool">
-          <div className="html_toolbar">
-            <button>사진</button>
-            <button>동영상</button>
-            <button>이모티콘</button>
-            <button>구분선</button>
-            <button>파일</button>
-            <button>링크</button>
-            <button>소스코드</button>
-            <button>표</button>
-            <button>수식</button>
+        <div className="writing_box">
+          <div className="tool">
+            <div className="html_toolbar">
+              <button>사진</button>
+              <button>동영상</button>
+              <button>이모티콘</button>
+              <button>구분선</button>
+              <button>파일</button>
+              <button>링크</button>
+              <button>소스코드</button>
+              <button>표</button>
+              <button>수식</button>
+            </div>
+            <div className="html_toolbar2">
+              <select name="toolbar2">
+                {" "}
+                {/*html boolbar2 주로 글자관련 나중에 api받아야할듯 */}
+                <option value="본문"> 본문 </option>
+                <option value="인용구"> 인용구 </option>
+              </select>
+              <select name="font_style">
+                <option value="기본서체">기본서체</option>
+                <option value="나눔고딕">나눔고딕</option>
+                <option value="나눔스퀘어">나눔스퀘어</option>
+              </select>
+              <select name="font_size">
+                <option value="11">11</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
+              <button onClick={toggleBold}>굵게</button>
+              <button onClick={toggleItalic}>기울기</button>
+              <button onClick={toggleUnderline}>밑줄</button>
+              <button onClick={toggleStrikeThrough}>취소선</button>
+              <button onClick={changeTextColor}>글자색 변경</button>
+              {/*글자색 현재 입력해야함 나중에 수정 */}
+              <button onClick={changeBackgroundColor}>글자 배경색 변경</button>
+              {/*글자색 현재 입력해야함 나중에 수정 */}
+              <button onClick={handleAlignmentChange("left")}>좌측정렬</button>
+              <button onClick={handleAlignmentChange("center")}>
+                가운데정렬
+              </button>
+              <button onClick={handleAlignmentChange("right")}>우측정렬</button>
+              <button onClick={handleLineHeightChange}>줄간격</button>
+            </div>
           </div>
-          <div className="html_toolbar2">
-            <select name="toolbar2">
-              {" "}
-              {/*html boolbar2 주로 글자관련 나중에 api받아야할듯 */}
-              <option value="본문"> 본문 </option>
-              <option value="인용구"> 인용구 </option>
-            </select>
-            <select name="font_style">
-              <option value="기본서체">기본서체</option>
-              <option value="나눔고딕">나눔고딕</option>
-              <option value="나눔스퀘어">나눔스퀘어</option>
-            </select>
-            <select name="font_size">
-              <option value="11">11</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-            <button onClick={toggleBold}>굵게</button>
-            <button onClick={toggleItalic}>기울기</button>
-            <button onClick={toggleUnderline}>밑줄</button>
-            <button onClick={toggleStrikeThrough}>취소선</button>
-            <button onClick={changeTextColor}>글자색 변경</button>
-            {/*글자색 현재 입력해야함 나중에 수정 */}
-            <button onClick={changeBackgroundColor}>글자 배경색 변경</button>
-            {/*글자색 현재 입력해야함 나중에 수정 */}
-            <button onClick={handleAlignmentChange("left")}>좌측정렬</button>
-            <button onClick={handleAlignmentChange("center")}>
-              가운데정렬
-            </button>
-            <button onClick={handleAlignmentChange("right")}>우측정렬</button>
-            <button onClick={handleLineHeightChange}>줄간격</button>
-          </div>
-        </div>
 
           <textarea
             className={`writing_text ${isBold ? "bold" : ""} ${
@@ -187,15 +179,14 @@ useEffect(() => {
             name="Board_content"
             placeholder="내용입력"
             value={boardContent}
-                      onChange={handleContentChange}
+            onChange={handleContentChange}
           ></textarea>
 
-        <button type="submit" className="registration">등록</button>
-
-      </div>
-</form>
-
+          <button type="submit" className="registration">
+            등록
+          </button>
+        </div>
+      </form>
     </div>
-
   );
 }
