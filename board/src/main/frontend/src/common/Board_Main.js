@@ -1,14 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/sidebar.css";
 
+
+import axios from "axios";
 export default function TestSidebar({ board }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [boards, setBoards] = useState([]);
 
   const handleBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
     console.log("북마크 클릭");
   };
+useEffect(() => {
+        const fetchBoards = async () => {
+            try {
+                const response = await axios.get('/board/gettable', { params : {cid : 1}});
+                setBoards(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching boards:', error);
+            }
+        };
+
+        fetchBoards();
+    }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+
+    // boards 배열을 사용하여 UI를 렌더링하는 로직
+
+const BoardItem = React.memo(({ boardTag, boardTitle, writerID }) => {
+  return (
+    <Link to={"/Post"}>
+      <div className="board_1">
+        <span>{boardTag}</span>
+        <h1>{boardTitle}</h1>
+        <p>{writerID}</p>
+      </div>
+    </Link>
+  );
+});
+
 
   return (
     <div className="body">
@@ -76,39 +107,16 @@ export default function TestSidebar({ board }) {
 
       <div className="board_container">
         <div className="board_set">
-          <Link to={"/Post"}>
-            {" "}
-            <div className="board_1">
-              <span>말머리1</span>
-              <h1>제목 1</h1>
-              <p>작성자</p>
-            </div>
-          </Link>
-          <Link to={"/board/1"}>
-            {" "}
-            <div className="board_1">
-              <span>말머리1</span>
-              <h1>제목 1</h1>
-              <p>작성자</p>
-            </div>
-          </Link>{" "}
-          <Link to={"/board/1"}>
-            {" "}
-            <div className="board_1">
-              <span>말머리1</span>
-              <h1>제목 1</h1>
-              <p>작성자</p>
-            </div>
-          </Link>{" "}
-          <Link to={"/board/1"}>
-            {" "}
-            <div className="board_1">
-              <span>말머리1</span>
-              <h1>제목 1</h1>
-              <p>작성자</p>
-            </div>
-          </Link>
+        {boards.map((board) => (
+          <div key={board.board_id} className="board_1">
+            <span>{board.board_tag}</span>
+            <h2>{board.board_title}</h2>
+            <p>{board.writer_ID}</p>
+          </div>
+        ))}
+
         </div>
+
 
         {/* 캘린더는 추후 api이용하자 일단 자리만 잡는걸로 */}
         <div className="calendar_container">
