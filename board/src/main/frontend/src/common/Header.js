@@ -10,6 +10,10 @@ export default function Header() {
 
   const [searchText, setSearchText] = useState(""); //현재 검색어
 
+  const [dynamicPath, setDynamicPath] = useState('/login');
+
+  const [dynamicEvent, setDynamicEvent] = useState();
+
   const handleInputChange = (e) => {
     //검색어 업데이트
     setSearchText(e.target.value);
@@ -46,6 +50,11 @@ export default function Header() {
     }
   };
   useEffect(() => {
+    // 현재 주소를 가져와서 localStorage에 저장
+    const currentPath = window.location.pathname;
+    localStorage.setItem('lastVisitedPath', currentPath);
+  }, []);
+  useEffect(() => {
       // useEffect 내에서 async 함수를 사용하기 위한 별도의 함수
       const fetchUserData = async () => {
         try {
@@ -67,6 +76,10 @@ export default function Header() {
             const userID = response.data.username;
             console.log(userID);
             setLoginID(userID);
+            setDynamicPath(localStorage.getItem('lastVisitedPath'));
+
+            // 토큰이 있을 때만 로그아웃 이벤트를 설정
+            setDynamicEvent(() => handleLogout);
           }else {
                    setLoginID("로그인");
                    }
@@ -78,7 +91,25 @@ export default function Header() {
       };
       // fetchUserData 함수 호출
           fetchUserData();
-        }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+  }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+
+  const handleLogout = async () => {
+    const userConfirmed = window.confirm("로그아웃 하시겠습니까?");
+        // If the user confirms, proceed with the logout
+        if (userConfirmed) {
+            try {
+                // 클라이언트에서 필요한 로그아웃 처리 (예: 로컬 스토리지에서 토큰 삭제 등)
+                localStorage.removeItem('userToken');
+
+                // 서버에 로그아웃 요청을 보냄
+                await axios.post('/member/logout');
+
+                document.location.href = localStorage.getItem('lastVisitedPath');
+            } catch (error) {
+                console.error('Error during logout:', error);
+            }
+        }
+  };
 
 
   return (
@@ -107,7 +138,7 @@ export default function Header() {
       <nav>
         {" "}
         {/* 네브바 버튼 */}
-        <Link className="로그인" to="/login">{ loginID }</Link>
+        <Link className="로그인" to={ dynamicPath } onClick={ dynamicEvent }>{ loginID }</Link>
         <Link to="/2">2</Link>
         <Link to="/3">3</Link>
       </nav>
