@@ -31,11 +31,17 @@ public List<BoardDTO> findDataByKeyword(String keyword) {
 }
 
 public void deleteDataByKeyword(String keyword, String keyword2){
-    jdbcTemplate.update(
+    int rowsAffected =  jdbcTemplate.update(
             "DELETE FROM board WHERE Board_ID = ? AND Writer_ID = ?",
             keyword, keyword2
     );
-
+    if (rowsAffected > 0) {
+        // 성공적으로 삭제된 경우
+        // 이 부분에서 성공적으로 삭제되었다는 메시지를 클라이언트로 전달하도록 처리할 수 있습니다.
+    } else {
+        // 삭제할 데이터가 없거나, SQL 실행에 문제가 생긴 경우
+        throw new RuntimeException("Failed to delete data");
+    }
 }
     public void save(BoardDTO boardDTO) {
         String sql = "INSERT INTO board (Community_ID, Writer_ID, Board_tag, Board_title, Board_content, Board_media, Board_recomend, Board_view, Board_write_date, Board_modify_date, Board_delete_date) " +
