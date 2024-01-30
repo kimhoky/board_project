@@ -28,9 +28,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="copyright">
-          © 2023프로젝트 김영우, 김경호, 이효민, 신민수, 박세준
-        </div>
+        <div className="copyright">© 2024프로젝트 김영우, 김경호, 이효민8</div>
       </div>
     </footer>
   );

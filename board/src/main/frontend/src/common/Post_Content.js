@@ -14,10 +14,10 @@ const{board_id} = useParams();
           <span>말머리</span>
 
           <textarea className="title" readOnly>
-            오늘 팔켓몬 다 죽었다 ㅋㅋ
+            제목
           </textarea>
         </form>
-        <button className="block">차단하기</button>
+        <button className="block">차단</button>
         <span>작성자</span>
       </div>
       <div className="post_content">

@@ -85,22 +85,26 @@ export default function StreamerRankings() {
           <div className="tableScroll">
             <table className="ranking-table">
               <tbody>
-                <Link to="streamer_border">
-                  {streamerData.map((streamer, index) => (
-                    <tr key={index}>
-                      <td>{streamer.rank}</td>
-                      <td>
+                {streamerData.map((streamer, index) => (
+                  <tr key={index}>
+                    <td>{streamer.rank}</td>
+                    <td>
+                      <Link to={`board/${streamer.rank}`}>
                         <img
                           src={streamer.avatar}
                           alt={`스트리머${streamer.rank}`}
                           className="avatar"
                         />
-                      </td>
-                      <td>{streamer.name}</td>
-                      <td className="points">{streamer.points}</td>
-                    </tr>
-                  ))}
-                </Link>
+                      </Link>
+                    </td>
+                    <td>
+                      <Link to={`border/${streamer.rank}`}>
+                        {streamer.name}
+                      </Link>
+                    </td>
+                    <td className="points">{streamer.points}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
