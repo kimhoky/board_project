@@ -54,4 +54,10 @@ public void deleteDataByKeyword(String keyword){
     }
 
 
+    public List<BoardDTO> findDataByCommunityID(String cid){
+        String sql = "SELECT * FROM board WHERE Community_ID = ?";
+       return jdbcTemplate.query(sql, new Object[]{cid},new BeanPropertyRowMapper<>(BoardDTO.class));
+    }
+
+
 }

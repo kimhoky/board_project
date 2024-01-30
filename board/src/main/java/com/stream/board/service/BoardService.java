@@ -41,7 +41,15 @@ public class BoardService {
 
         boardRepository.deleteDataByKeyword(keyword);
     }
+    public List<BoardDTO> getAllBoards(String cid) {
+        // 여기에서 실제로 데이터베이스에서 데이터를 조회하는 로직을 작성합니다.
+        // 예를 들어, boardRepository.findAll() 등을 사용하여 데이터를 가져올 수 있습니다.
+        // 이는 프로젝트의 구조나 사용하는 JPA 라이브러리에 따라 다를 수 있습니다.
+        // 아래는 간단한 예시입니다.
 
+        List<BoardDTO> boards = boardRepository.findDataByCommunityID(cid); // 이 메서드는 실제로 구현되어 있어야 합니다.
+        return boards;
+    }
 
 
 

@@ -73,11 +73,10 @@ export default function Header() {
             setLoginID(userID);
             setDynamicPath();
 
-            // 토큰이 있을 때만 로그아웃 이벤트를 설정
-            setDynamicEvent(() => handleLogout);
-          }else {
-                   setLoginID("로그인");
-                   }
+          // 토큰이 있을 때만 로그아웃 이벤트를 설정
+          setDynamicEvent(() => handleLogout);
+        } else {
+          setLoginID("로그인");
         }
         catch (error) {
           // 에러 처리
@@ -106,7 +105,6 @@ export default function Header() {
         }
   };
 
-
   return (
     <header className="mw">
       <h1>
@@ -133,8 +131,10 @@ export default function Header() {
       <nav>
         {" "}
         {/* 네브바 버튼 */}
-        <Link className="로그인" to={ dynamicPath } onClick={ dynamicEvent }>{ loginID }</Link>
-        <Link to="/2">2</Link>
+        <Link className="로그인" to={dynamicPath} onClick={dynamicEvent}>
+          {loginID}
+        </Link>
+        <Link to="/board">게시판</Link>
         <Link to="/3">3</Link>
       </nav>
       <div>

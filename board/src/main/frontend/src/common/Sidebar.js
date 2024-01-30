@@ -68,10 +68,13 @@ export default function Sidebar({ board }) {
             <li>32132</li>
             <li>321325</li>
           </div>
-          <button className="calendar_button">
-            <FontAwesomeIcon icon="fa-regular fa-calendar" />
-            <span>캘린더</span>
-          </button>
+          <Link to="Calendar">
+            <button className="calendar_button">
+              <FontAwesomeIcon icon="fa-regular fa-calendar" />
+
+              <span>캘린더</span>
+            </button>
+          </Link>
           <div className="user-info">
             <span className="user-badge">동접자</span>
             <span className="user-count" id="userCount">

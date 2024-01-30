@@ -1,17 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../css/content.css";
 
+
 export default function Post_Content() {
+
+const{board_id} = useParams();
+
   return (
     <div className="post_container">
       <div className="post_title">
         <form>
           <span>말머리</span>
 
-          <input className="title" placeholder="제목을 입력해주세요"></input>
+          <textarea className="title" readOnly>
+            제목
+          </textarea>
         </form>
-        <button className="block">차단하기</button>
+        <button className="block">차단</button>
         <span>작성자</span>
       </div>
       <div className="post_content">
@@ -43,7 +49,9 @@ export default function Post_Content() {
             </Link>
           </div>
           <form>
-            <textarea className="post_input">3232</textarea>
+            <textarea className="post_input" readOnly>
+              3232
+            </textarea>
           </form>
           <div className="gd">
             <button className="good">좋아요:0</button>

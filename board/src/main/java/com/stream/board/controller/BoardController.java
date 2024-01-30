@@ -4,6 +4,8 @@ import com.stream.board.dto.BoardDTO;
 import com.stream.board.dto.MemberDTO;
 import com.stream.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,11 @@ public class BoardController {
         System.out.println("boardDTO = " + BoardDTO);
         boardService.save(BoardDTO);
         return "redirect:/board";
+    }
+    @GetMapping("/board/gettable")
+    public ResponseEntity<List<BoardDTO>> getAllBoards(String cid) {
+        List<BoardDTO> boards = boardService.getAllBoards(cid);
+        return new ResponseEntity<>(boards, HttpStatus.OK);
     }
 
     @GetMapping("/board/del")
