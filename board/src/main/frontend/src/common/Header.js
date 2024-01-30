@@ -64,11 +64,11 @@ export default function Header() {
                 Authorization: `${ token }`,
               },
             });
-            console.log('Server Response:', response.data.username);
+            console.log('Server Response:', response.data);
 
 
             // 사용자 아이디 추출 및 상태 업데이트
-            const userID = response.data.username;
+            const userID = response.data;
             console.log(userID);
             setLoginID(userID);
             setDynamicPath();

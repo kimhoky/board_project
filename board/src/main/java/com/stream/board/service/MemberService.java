@@ -1,6 +1,7 @@
 package com.stream.board.service;
 
 import com.stream.board.dto.MemberDTO;
+import com.stream.board.dto.UserDTO;
 import com.stream.board.entity.MemberEntity;
 import com.stream.board.model.BoardMember;
 import com.stream.board.repository.LoginRepository;
@@ -27,10 +28,8 @@ public class MemberService {
         memberRepository.save(memberEntity);
     }
 
-    public BoardMember login(String User_ID, String User_password) {
-        return loginRepository.findByUser_ID(User_ID)
-                .filter(member -> member.getUser_password().equals(User_password))
-                .orElse(null);
+    public UserDTO login(String User_ID, String User_password) {
+        return loginRepository.loginByID_Password(User_ID, User_password);
     }
 
     public List<BoardMember> getAllUsersAsBoardMembers() {
