@@ -2,17 +2,14 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "../css/content.css";
 
-
 export default function Post_Content() {
-
-const{board_id} = useParams();
+  const { board_id } = useParams();
 
   return (
     <div className="post_container">
       <div className="post_title">
         <form>
           <span>말머리</span>
-
           <textarea className="title" readOnly>
             제목
           </textarea>
