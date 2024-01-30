@@ -89,7 +89,7 @@ export default function StreamerRankings() {
                   <tr key={index}>
                     <td>{streamer.rank}</td>
                     <td>
-                      <Link to={`board/${streamer.rank}`}>
+                      <Link to={`/board/${streamer.rank}`}>
                         <img
                           src={streamer.avatar}
                           alt={`스트리머${streamer.rank}`}
@@ -98,7 +98,7 @@ export default function StreamerRankings() {
                       </Link>
                     </td>
                     <td>
-                      <Link to={`border/${streamer.rank}`}>
+                      <Link to={`/board/${streamer.rank}`}>
                         {streamer.name}
                       </Link>
                     </td>
