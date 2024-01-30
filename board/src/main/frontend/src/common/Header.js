@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
-  const [loginID, setLoginID] = useState("");
+  const [loginID, setLoginID] = useState("로그인");
 
   const [searchText, setSearchText] = useState(""); //현재 검색어
 
@@ -75,16 +75,16 @@ export default function Header() {
 
           // 토큰이 있을 때만 로그아웃 이벤트를 설정
           setDynamicEvent(() => handleLogout);
-        } else {
-          setLoginID("로그인");
-        }
-        catch (error) {
-          // 에러 처리
-          console.error('Error fetching user data:', error);
-        }
-      };
+          } else {
+              setLoginID("로그인");
+          }
+        }catch (error) {
+                   // 에러 처리
+                   console.error('Error fetching user data:', error);
+      }
+      }
       // fetchUserData 함수 호출
-          fetchUserData();
+      fetchUserData();
   }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
 
   const handleLogout = async () => {
@@ -131,9 +131,7 @@ export default function Header() {
       <nav>
         {" "}
         {/* 네브바 버튼 */}
-        <Link className="로그인" to={dynamicPath} onClick={dynamicEvent}>
-          {loginID}
-        </Link>
+        <Link className="로그인" to={dynamicPath} onClick={dynamicEvent}>{loginID}</Link>
         <Link to="/board">게시판</Link>
         <Link to="/3">3</Link>
       </nav>
