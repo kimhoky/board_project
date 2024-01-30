@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
@@ -11,7 +11,16 @@ import Post from "./pages/Post";
 
 import { ThemeProvider } from "./context/themeProvider";
 
-const App = () => {
+function App() {
+  const location = useLocation();
+
+    useEffect(() => {
+      // 페이지 이동 시 localStorage에 현재 주소를 저장
+      if (location.pathname != "/login") {
+        localStorage.setItem('lastVisitedPath', location.pathname);
+      }
+    }, [location.pathname]);
+
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState("");
 
@@ -20,9 +29,10 @@ const App = () => {
     setUserId(newUserId);
   };
   return (
-    <Router>
+    <div>
+    <Header />
       <ThemeProvider>
-        <Header />
+
         <Routes>
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login onLogin={handleLogin} />} />
@@ -31,9 +41,10 @@ const App = () => {
           <Route path="writing" element={<Writing />} />
           <Route path="post" element={<Post />} />
         </Routes>
-        <Footer />
+
       </ThemeProvider>
-    </Router>
+      <Footer />
+    </div>
   );
 };
 
