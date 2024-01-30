@@ -78,10 +78,6 @@ label {
   border-radius: 20px;
   margin-left: 95px;
 }
-.image_upload {
-  width: 523px;
-  height: 376px;
-}
 
 .save_button,
 .delete_button {
@@ -95,4 +91,21 @@ label {
   margin-left: 70px;
   width: 550px;
   height: 300px;
+}
+.btn-upload {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77, 77, 77);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#file {
+  display: none;
+}
+.btn-upload:hover {
+  background-color: #636363;
 }

@@ -68,7 +68,7 @@ export default function Sidebar({ board }) {
             <li>32132</li>
             <li>321325</li>
           </div>
-          <Link to="Calendar">
+          <Link to="/calendar">
             <button className="calendar_button">
               <FontAwesomeIcon icon="fa-regular fa-calendar" />
 
