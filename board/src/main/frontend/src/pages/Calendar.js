@@ -4,7 +4,7 @@ export default function () {
   return (
     <main style={{ display: "flex", maxWidth: "1500px" }}>
       <Sidebar style={{ flex: "1" }} />
-      <Calendar style={{ flex: "1" }} />
+      <Calendar_Main style={{ flex: "1" }} />
     </main>
   );
 }

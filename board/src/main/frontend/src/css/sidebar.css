@@ -212,6 +212,7 @@ select {
 /*게시글*/
 .board_container {
   max-width: 2000px;
+  max-height: 1000px;
   display: flex;
 }
 .board_set {
