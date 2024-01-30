@@ -59,5 +59,10 @@ public void deleteDataByKeyword(String keyword){
        return jdbcTemplate.query(sql, new Object[]{cid},new BeanPropertyRowMapper<>(BoardDTO.class));
     }
 
+    public List<BoardDTO> findDataByBoardID(String bid){
+        String sql = "SELECT * FROM board WHERE Board_ID = ?";
+        return jdbcTemplate.query(sql, new Object[]{bid},new BeanPropertyRowMapper<>(BoardDTO.class));
+    }
+
 
 }

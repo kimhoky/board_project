@@ -46,6 +46,7 @@ function App() {
           <Route path="writing" element={<Writing />} />
           <Route path="post" element={<Post />} />
           <Route path="calendar" element={<Calendar />} />
+          <Route path="/post/:board_ID" element={<Post />} />
         </Routes>
       </ThemeProvider>
       <Footer />
