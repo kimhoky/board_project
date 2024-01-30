@@ -37,9 +37,9 @@ public class BoardService {
         boardRepository.save(BoardDTO);
     }
 
-    public void deletePost(String keyword){
+    public void deletePost(String keyword, String keyword2){
 
-        boardRepository.deleteDataByKeyword(keyword);
+        boardRepository.deleteDataByKeyword(keyword, keyword2);
     }
     public List<BoardDTO> getAllBoards(String cid) {
         // 여기에서 실제로 데이터베이스에서 데이터를 조회하는 로직을 작성합니다.

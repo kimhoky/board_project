@@ -5,11 +5,40 @@ import "../css/content.css";
 
 export default function Post_Content() {
   const { board_id } = useParams();
+  const [loginID, setLoginID] = useState("로그인");
 
   const [boards, setBoards] = useState([]);
   const { board_ID } = useParams();
 
   console.log(board_ID);
+
+
+   useEffect(() => {
+      const fetchUserData = async () => {
+        try {
+          const token = localStorage.getItem("userToken");
+
+          if (token != null) {
+            const response = await axios.get("/api/user", {
+              headers: {
+                Authorization: `${token}`,
+              },
+            });
+
+            const userID = response.data;
+            setLoginID(userID);
+          } else {
+            setLoginID("로그인");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+
+      fetchUserData();
+    }, []);
+
+
   useEffect(() => {
     const fetchBoards = async () => {
       try {
@@ -26,6 +55,46 @@ export default function Post_Content() {
 
     fetchBoards();
   }, [board_ID]); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+
+
+ const handledelete = async () => {
+    const userConfirmed = window.confirm("정말 삭제하시겠습니까?");
+    const encodedBoardID = encodeURIComponent(board_ID);
+
+        // If the user confirms, proceed with the logout
+        if (userConfirmed) {
+            axios.get(`/board/del?deleteboardid=${encodedBoardID}&deletewriterid=${loginID}`)
+              .then(response => {
+
+              if (response.status === 200) {
+                        window.confirm("삭제가 완료되었습니다.");
+                        window.location.href = "/board";
+                        console.log(response.data);
+                      } else {
+                        // 서버 응답이 성공(200)이 아닌 경우, 실패 처리
+                        window.confirm("삭제 실패하였습니다.");
+                      }
+//
+//                const userConfirmed2 = window.confirm("삭제가 완료되었습니다.");
+//                if(userConfirmed2){
+//                window.location.href = "/board";
+//                }else{
+//                window.location.href = "/board";
+//                }
+                // 서버로부터의 응답 처리
+                console.log(response.data);
+              })
+              .catch(error => {
+
+              window.confirm("삭제 실패하였습니다.")
+                // 오류 처리
+                console.error('Error:', error);
+              });
+        }
+  };
+
+
+
 
   return (
     <div className="post_container">
@@ -60,9 +129,7 @@ export default function Post_Content() {
         ))}
         <div className="post_text">
           <div className="post_button">
-            <Link to="1">
-              <span>삭제</span>
-            </Link>
+            <button onClick={handledelete}>삭제</button>
             <Link to="1">
               <span>수정</span>
             </Link>

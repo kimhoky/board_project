@@ -51,7 +51,7 @@ export default function Writing() {
             },
           });
 
-          const userID = response.data.username;
+          const userID = response.data;
           setLoginID(userID);
         } else {
           setLoginID("로그인");

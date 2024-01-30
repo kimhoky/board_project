@@ -30,9 +30,11 @@ public List<BoardDTO> findDataByKeyword(String keyword) {
     return jdbcTemplate.query(sql, new Object[]{formattedKeyword, formattedKeyword, formattedKeyword}, new BeanPropertyRowMapper<>(BoardDTO.class));
 }
 
-public void deleteDataByKeyword(String keyword){
-        String sql= "DELETE FROM board WHERE Board_ID = ?";
-        jdbcTemplate.query(sql, new Object[]{keyword}, new BeanPropertyRowMapper<>(BoardDTO.class));
+public void deleteDataByKeyword(String keyword, String keyword2){
+    jdbcTemplate.update(
+            "DELETE FROM board WHERE Board_ID = ? AND Writer_ID = ?",
+            keyword, keyword2
+    );
 
 }
     public void save(BoardDTO boardDTO) {
