@@ -28,17 +28,7 @@ useEffect(() => {
 
     // boards 배열을 사용하여 UI를 렌더링하는 로직
 
-const BoardItem = React.memo(({ boardTag, boardTitle, writerID }) => {
-  return (
-    <Link to={"/Post"}>
-      <div className="board_1">
-        <span>{boardTag}</span>
-        <h1>{boardTitle}</h1>
-        <p>{writerID}</p>
-      </div>
-    </Link>
-  );
-});
+
 
 
   return (
@@ -108,7 +98,7 @@ const BoardItem = React.memo(({ boardTag, boardTitle, writerID }) => {
       <div className="board_container">
         <div className="board_set">
         {boards.slice(0,8).map((board) => (
-          <Link to={`/post/${board.board_id}`} key={board.board_id} className="board_1">
+          <Link to={`/post/${board.board_ID}`} key={board.board_ID} className="board_1">
             <span>{board.board_tag}</span>
             <h2>{board.board_title}</h2>
             <p>{board.writer_ID}</p>

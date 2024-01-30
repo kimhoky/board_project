@@ -47,6 +47,12 @@ public class BoardController {
         return new ResponseEntity<>(boards, HttpStatus.OK);
     }
 
+    @GetMapping("/board/getboard")
+    public ResponseEntity<List<BoardDTO>> getBoard(String bid) {
+        List<BoardDTO> boards = boardService.getBoards(bid);
+        return new ResponseEntity<>(boards, HttpStatus.OK);
+    }
+
     @GetMapping("/board/del")
     public void delete(@RequestParam(value = "deleteboardid") String keyword){
         boardService.deletePost(keyword);

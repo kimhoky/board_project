@@ -39,7 +39,7 @@ function App() {
           <Route path="main" element={<Main />} />
           <Route path="board" element={<Board />} />
           <Route path="writing" element={<Writing />} />
-          <Route path="post" element={<Post />} />
+          <Route path="/post/:board_ID" element={<Post />} />
         </Routes>
 
       </ThemeProvider>
