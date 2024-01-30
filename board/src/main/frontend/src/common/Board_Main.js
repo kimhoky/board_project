@@ -107,12 +107,12 @@ const BoardItem = React.memo(({ boardTag, boardTitle, writerID }) => {
 
       <div className="board_container">
         <div className="board_set">
-        {boards.map((board) => (
-          <div key={board.board_id} className="board_1">
+        {boards.slice(0,8).map((board) => (
+          <Link to={`/post/${board.board_id}`} key={board.board_id} className="board_1">
             <span>{board.board_tag}</span>
             <h2>{board.board_title}</h2>
             <p>{board.writer_ID}</p>
-          </div>
+          </Link>
         ))}
 
         </div>

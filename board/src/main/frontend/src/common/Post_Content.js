@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../css/content.css";
 
+
 export default function Post_Content() {
+
+const{board_id} = useParams();
+
   return (
     <div className="post_container">
       <div className="post_title">
