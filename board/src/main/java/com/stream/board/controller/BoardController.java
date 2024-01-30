@@ -34,6 +34,8 @@ public class BoardController {
         return boardService.searchPosts(keyword);
     }
 
+
+
     @PostMapping("/board/save")    // name값을 requestparam에 담아온다
     public String save(@ModelAttribute BoardDTO BoardDTO) {
         System.out.println("boarddto.save");
@@ -41,12 +43,14 @@ public class BoardController {
         boardService.save(BoardDTO);
         return "redirect:/board";
     }
+
+    // /board 들어갔을때 항목을 가져옴
     @GetMapping("/board/gettable")
     public ResponseEntity<List<BoardDTO>> getAllBoards(String cid) {
         List<BoardDTO> boards = boardService.getAllBoards(cid);
         return new ResponseEntity<>(boards, HttpStatus.OK);
     }
-
+    // /post로 들어갈때 해당하는 레이블 표시
     @GetMapping("/board/getboard")
     public ResponseEntity<List<BoardDTO>> getBoard(String bid) {
         List<BoardDTO> boards = boardService.getBoards(bid);

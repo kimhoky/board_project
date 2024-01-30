@@ -32,7 +32,6 @@ export default function Post_Content() {
       {boards.map((board) => (
         <div className="post_title">
           <form>
-            <span>말머리</span>
             <span>{board.board_tag}</span>
 
             <textarea className="title" readOnly>
@@ -50,7 +49,7 @@ export default function Post_Content() {
             <form>
               <div className="dt">
                 <span className="date">{board.write_date}</span>
-                <span className="time">00:00:00</span>
+
 
                 <span className="test">댓글</span>
                 <span className="recommend">추천</span>
