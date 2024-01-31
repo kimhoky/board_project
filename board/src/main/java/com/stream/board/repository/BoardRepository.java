@@ -5,11 +5,13 @@ package com.stream.board.repository;
 import com.stream.board.dto.BoardDTO;
 import com.stream.board.entity.BoardEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.util.List;
 @Repository
 public class BoardRepository {
@@ -43,6 +45,25 @@ public void deleteDataByKeyword(String keyword, String keyword2){
         throw new RuntimeException("Failed to delete data");
     }
 }
+
+    public List<BoardDTO> editDataByKeyword(String keyword, String keyword2){
+
+        try {
+            String sql = "SELECT * FROM board WHERE Board_ID = ? AND Writer_ID = ?";
+            List<BoardDTO> result = jdbcTemplate.query(sql, new Object[]{keyword, keyword2}, new BeanPropertyRowMapper<>(BoardDTO.class));
+
+            if (result.isEmpty()) {
+                // 수정할 데이터가 없는 경우
+                throw new RuntimeException("No data to edit");
+            }
+
+            return result;
+        } catch (Exception e) {
+            // 다른 예외 발생 시
+            throw new RuntimeException("Failed to edit data", e);
+        }
+    }
+
     public void save(BoardDTO boardDTO) {
         String sql = "INSERT INTO board (Community_ID, Writer_ID, Board_tag, Board_title, Board_content, Board_media, Board_recomend, Board_view, Board_write_date, Board_modify_date, Board_delete_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

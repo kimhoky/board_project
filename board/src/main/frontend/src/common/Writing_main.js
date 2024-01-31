@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../css/writing.css";
 import axios from "axios";
+import PropTypes from 'prop-types'; // 추가
+import { useLocation } from 'react-router-dom';
+
+
 
 export default function Writing() {
   const [boardTitle, setBoardTitle] = useState("");
@@ -14,11 +18,15 @@ export default function Writing() {
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [alignment, setAlignment] = useState("left");
   const [lineHeight, setLineHeight] = useState(1.5);
-
+const location = useLocation();
+ const dataList = location.state && location.state.data;
   const toggleBold = () => setIsBold(!isBold);
   const toggleItalic = () => setIsItalic(!isItalic);
   const toggleUnderline = () => setIsUnderline(!isUnderline);
   const toggleStrikeThrough = () => setIsStrikeThrough(!isStrikeThrough);
+
+
+
 
   const changeTextColor = () => {
     const newColor = prompt("Enter text color:");
@@ -41,6 +49,7 @@ export default function Writing() {
   };
   useEffect(() => {
     const fetchUserData = async () => {
+
       try {
         const token = localStorage.getItem("userToken");
 
@@ -93,6 +102,29 @@ export default function Writing() {
       console.error("Error saving board data:", error);
     }
   };
+
+useEffect(() => {
+    const fetchboardData = async () => {
+
+      try {
+console.log(dataList);
+        if (dataList != null) {
+        console.log(dataList);
+         setBoardTitle(dataList[0].board_title);
+         setBoardContent(dataList[0].board_content);
+
+        } else {
+
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+fetchboardData();
+  }, []);
+
+
 
   return (
     <div className="writing_container">

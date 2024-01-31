@@ -58,4 +58,11 @@ public class BoardController {
     public void delete(@RequestParam(value = "deleteboardid") String keyword, @RequestParam(value = "deletewriterid") String keyword2){
         boardService.deletePost(keyword, keyword2);
     }
+
+    @GetMapping("/board/edit")
+    public ResponseEntity<List<BoardDTO>> edit(@RequestParam(value = "editboardid") String keyword, @RequestParam(value = "editwriterid") String keyword2){
+
+    List<BoardDTO> boards = boardService.editPost(keyword, keyword2);
+        return new ResponseEntity<>(boards, HttpStatus.OK);
+    }
 }

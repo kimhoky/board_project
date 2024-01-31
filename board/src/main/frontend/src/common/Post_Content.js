@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/content.css";
@@ -6,10 +6,11 @@ import "../css/content.css";
 export default function Post_Content() {
   const { board_id } = useParams();
   const [loginID, setLoginID] = useState("로그인");
-
+ const [boardTitle, setBoardTitle] = useState("");
+  const [boardContent, setBoardContent] = useState("");
   const [boards, setBoards] = useState([]);
   const { board_ID } = useParams();
-
+const navigate = useNavigate();
   console.log(board_ID);
 
 
@@ -92,7 +93,33 @@ export default function Post_Content() {
               });
         }
   };
+const handleedit = async () => {
 
+    const encodedBoardID = encodeURIComponent(board_ID);
+
+            axios.get(`/board/edit?editboardid=${encodedBoardID}&editwriterid=${loginID}`)
+              .then(response => {
+
+              if (response.status === 200) {
+
+
+                        //console.log(response.data);
+                        navigate("/Writing", {state: { data:response.data }});
+                      } else {
+                        // 서버 응답이 성공(200)이 아닌 경우, 실패 처리
+                        window.confirm("수정에 실패하였습니다.");
+                      }
+                // 서버로부터의 응답 처리
+
+              })
+              .catch(error => {
+
+              window.confirm("수정에 실패하였습니다.")
+                // 오류 처리
+                console.error('Error:', error);
+              });
+
+  };
 
 
 
@@ -130,9 +157,9 @@ export default function Post_Content() {
         <div className="post_text">
           <div className="post_button">
             <button onClick={handledelete}>삭제</button>
-            <Link to="1">
-              <span>수정</span>
-            </Link>
+
+              <button onClick={handleedit}>수정</button>
+
             <Link to="1">
               <span>공유</span>
             </Link>

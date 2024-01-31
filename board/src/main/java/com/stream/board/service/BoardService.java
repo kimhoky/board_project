@@ -38,6 +38,11 @@ public class BoardService {
 
         boardRepository.deleteDataByKeyword(keyword, keyword2);
     }
+    public List<BoardDTO> editPost(String keyword, String keyword2){
+
+       return boardRepository.editDataByKeyword(keyword, keyword2);
+    }
+
     public List<BoardDTO> getAllBoards(String cid) {
         // 여기에서 실제로 데이터베이스에서 데이터를 조회하는 로직을 작성합니다.
         // 예를 들어, boardRepository.findAll() 등을 사용하여 데이터를 가져올 수 있습니다.
