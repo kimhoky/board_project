@@ -30,16 +30,12 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
-
-/*sidebar 헤더 */
-.header_control{
-      background: ${({ theme }) => theme.bgColor};
-    color: ${({ theme }) => theme.textColor};
-}
-// .board
-// {
+  //이거 왜있더라
+// /*sidebar 헤더 */
+// .header_control{
 //       background: ${({ theme }) => theme.bgColor};
 //     color: ${({ theme }) => theme.textColor};
 // }
+
 
 `;

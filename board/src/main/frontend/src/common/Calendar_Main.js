@@ -22,7 +22,7 @@ export default function Calendar_Main() {
 
   return (
     <main className="calendar_container2">
-      <nav className="calender_name">캘린더(이름)</nav>
+      <nav className="calender_name">캘린더</nav>
       <div className="calendar_content3">
         <section className="calendar_img">
           {/* 이미지 올릴시 동적으로 크기 조절 */}
