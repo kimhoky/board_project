@@ -1,6 +1,6 @@
 package com.stream.board.entity;
 
-import com.stream.board.dto.MemberDTO;
+import com.stream.board.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,11 +32,11 @@ public class MemberEntity { //table 역할
     @Column
     private int Is_streamer;
 
-    public static MemberEntity toMemberEntity(@RequestParam MemberDTO memberDTO){
+    public static MemberEntity toMemberEntity(@RequestParam UserDTO userDTO){
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setUser_id(memberDTO.getUser_id());
-        memberEntity.setUser_password(memberDTO.getUser_password());
-        memberEntity.setUser_name(memberDTO.getUser_name());
+        memberEntity.setUser_id(userDTO.getUser_ID());
+        memberEntity.setUser_password(userDTO.getUser_password());
+        memberEntity.setUser_name(userDTO.getUser_name());
 
         return memberEntity;
     }

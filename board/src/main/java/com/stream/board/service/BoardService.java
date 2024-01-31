@@ -1,11 +1,8 @@
 package com.stream.board.service;
 
 import com.stream.board.dto.BoardDTO;
-import com.stream.board.dto.MemberDTO;
 import com.stream.board.entity.BoardEntity;
-import com.stream.board.entity.MemberEntity;
 import com.stream.board.repository.BoardRepository;
-import com.stream.board.repository.BoardingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

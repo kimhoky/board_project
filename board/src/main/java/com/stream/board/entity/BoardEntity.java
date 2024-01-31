@@ -1,18 +1,14 @@
 package com.stream.board.entity;
 
 import com.stream.board.dto.BoardDTO;
-import com.stream.board.dto.MemberDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter
