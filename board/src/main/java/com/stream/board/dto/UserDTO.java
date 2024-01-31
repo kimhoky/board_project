@@ -12,7 +12,6 @@ public class UserDTO {
     private String User_ID;
     private String User_password;
     private String User_name;
-    private Collection<? extends GrantedAuthority> authorities;
 
     // 기본 생성자
     public UserDTO() {
