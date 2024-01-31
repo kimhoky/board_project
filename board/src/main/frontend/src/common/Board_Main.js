@@ -1,52 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../css/sidebar.css";
 
+import "../css/board.css";
 
 import axios from "axios";
 export default function TestSidebar({ board }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [boards, setBoards] = useState([]);
-
+  const [isGridView, setIsGridView] = useState(false); // grid 클릭시
+  const createdAt = new Date(); //현재시간 불러옴 나중에 db랑 연결
   const handleBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
     console.log("북마크 클릭");
   };
-useEffect(() => {
-        const fetchBoards = async () => {
-            try {
-                const response = await axios.get('/board/gettable', { params : {cid : 1}});
-                setBoards(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching boards:', error);
-            }
-        };
+  const handleGridViewClick = () => {
+    setIsGridView(!isGridView);
+    console.log("그리드 뷰 클릭");
+  };
+  useEffect(() => {
+    const fetchBoards = async () => {
+      try {
+        const response = await axios.get("/board/gettable", {
+          params: { cid: 1 },
+        });
+        setBoards(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching boards:", error);
+      }
+    };
 
-        fetchBoards();
-    }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+    fetchBoards();
+  }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
 
-    // boards 배열을 사용하여 UI를 렌더링하는 로직
-
-
-
+  // boards 배열을 사용하여 UI를 렌더링하는 로직
 
   return (
-    <div className="body">
-      <div className="header_control">
-        <div className="LB_button">
+    <main id="main">
+      <article className="header_control">
+        <section className="LB_button">
           {" "}
           {/*리스트 그리드 글쓰기 변경 */}
-          <button className="list_button">
+          <button
+            className={`list_button ${isGridView ? "" : "active"}`}
+            onClick={handleGridViewClick}
+          >
             list
-            {/* <FontAwesomeIcon icon="fa-solid fa-list" /> */}
           </button>
-          <button className="grid_button">
+          <button
+            className={`grid_button ${isGridView ? "active" : ""}`}
+            onClick={handleGridViewClick}
+          >
             grid
-            {/* <FontAwesomeIcon icon="fa-solid fa-table-cells-large" /> */}
           </button>
-        </div>
-        <div className="billet_point">
+        </section>
+        <section className="billet_point">
           {" "}
           {/*말머리 */}
           <span>말머리</span>
@@ -55,8 +63,8 @@ useEffect(() => {
           <button>질문</button>
           <button>정보</button>
           <button>파티</button>
-        </div>
-        <div className="billet_list">
+        </section>
+        <section className="billet_list">
           <span className="billet_filter">말머리 필터</span>
           <select name="billet_choice">
             {" "}
@@ -67,8 +75,8 @@ useEffect(() => {
             <option value="말머리4"> 말머리4 </option>
             <option value="말머리5"> 말머리5 </option>
           </select>
-        </div>
-      </div>
+        </section>
+      </article>
       {/* 배너 이미지, 배너 버튼  */}
       <div className="banner_img_container">
         <img src=".\assets\banner_img.jpg" className="banner_img" />
@@ -95,18 +103,34 @@ useEffect(() => {
         </div>
       </div>
 
-      <div className="board_container">
+      <div className={`board_container ${isGridView ? "grid-view" : ""}`}>
         <div className="board_set">
-        {boards.slice(0,8).map((board) => (
-          <Link to={`/post/${board.board_ID}`} key={board.board_ID} className="board_1">
-            <span>{board.board_tag}</span>
-            <h2>{board.board_title}</h2>
-            <p>{board.writer_ID}</p>
-          </Link>
-        ))}
+          {boards.slice(0, 8).map((board) => (
+            <Link
+              to={`/post/${board.board_ID}`}
+              key={board.board_ID}
+              className={`board_1 ${isGridView ? "grid-view" : ""}`}
+            >
+              <span>{board.board_tag}</span>
+              <h2>
+                {board.board_title} <p>[5]</p>
+              </h2>
 
+              {/* <img src={board.imageSrc} alt="list 게시판 이미지" /> */}
+              <img
+                src="/assets/board_test_img.jpg"
+                alt="Board Image"
+                className="board-image"
+              />
+
+              <p>{board.writer_ID}</p>
+              <p> {new Date(createdAt).toLocaleString()}</p>
+              {/*작성시간 */}
+              <p>조회수:5</p>
+              <p>추천:5</p>
+            </Link>
+          ))}
         </div>
-
 
         {/* 캘린더는 추후 api이용하자 일단 자리만 잡는걸로 */}
         <div className="calendar_container">
@@ -114,6 +138,15 @@ useEffect(() => {
           <div className="calendar_box">캘린더 내용을 입력해주세요</div>
         </div>
       </div>
-    </div>
+    </main>
   );
+}
+{
+  /* <FontAwesomeIcon icon="fa-solid fa-list" /> */
+  {
+    /* <FontAwesomeIcon icon="fa-solid fa-table-cells-large" /> */
+  }
+}
+{
+  /*시간 조회수 추천*/
 }
