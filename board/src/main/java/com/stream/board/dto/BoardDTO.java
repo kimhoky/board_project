@@ -1,10 +1,8 @@
 package com.stream.board.dto;
 
 import com.stream.board.entity.BoardEntity;
-import com.stream.board.entity.MemberEntity;
 import lombok.*;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter

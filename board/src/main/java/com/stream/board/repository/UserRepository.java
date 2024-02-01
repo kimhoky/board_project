@@ -1,10 +1,11 @@
 package com.stream.board.repository;
 
-import com.stream.board.entity.MemberEntity;
-import org.springframework.data.repository.CrudRepository;
+import com.stream.board.entity.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends CrudRepository<MemberEntity, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long>
+{
 
-    // 모든 레코드를 가져오는 메서드
-    Iterable<MemberEntity> findAll();
 }
