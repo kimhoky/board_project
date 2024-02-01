@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Img_Upload from "./Img_Upload";
 import "../css/manager.css";
 
 export default function Manager_Main() {
-  const [activeButton, setActiveButton] = useState("");
-
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const handleImageUpload = (imageData) => {
+    setUploadedImage(imageData);
   };
-  const buttonsNameList = ["버튼1", "버튼2", "버튼3", "버튼4"];
+
   return (
     <main className="manager_main">
       <nav className="manager_name">
@@ -32,9 +31,30 @@ export default function Manager_Main() {
       <section className="manager_img">
         <a>배너 이미지</a>
         <hr />
-        <img src=".\assets\banner_img.jpg" />
+
+        {uploadedImage ? (
+          <img
+            src={uploadedImage}
+            alt="Uploaded"
+            style={{
+              maxWidth: "900px",
+              maxHeight: "150px",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        ) : (
+          <>
+            <p className="test">배너 이미지</p>
+
+            <img className="manger_banner" src=".\assets\banner_img.jpg" />
+          </>
+        )}
       </section>
-      <button>저장하기</button>
+      <article className="manager_button">
+        <button>저장하기</button>
+        <Img_Upload onImageUpload={handleImageUpload} />
+      </article>
     </main>
   );
 }
