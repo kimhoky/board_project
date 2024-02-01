@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../css/board.css";
 
 import axios from "axios";
-export default function TestSidebar({ board }) {
+export default function Board_Main({ board }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [boards, setBoards] = useState([]);
   const [isGridView, setIsGridView] = useState(false); // grid 클릭시
