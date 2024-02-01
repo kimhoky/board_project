@@ -1,12 +1,18 @@
-import React from "react";
-
+import React, { useState } from "react";
+import Button from "./Button";
 import "../css/manager.css";
 
 export default function Manager_Main() {
+  const [activeButton, setActiveButton] = useState("");
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+  const buttonsNameList = ["버튼1", "버튼2", "버튼3", "버튼4"];
   return (
     <main className="manager_main">
       <nav className="manager_name">
-        게시판 메인 관리자 페이지
+        게시판 설정
         <hr />
       </nav>
 

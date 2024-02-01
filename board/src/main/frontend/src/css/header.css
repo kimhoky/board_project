@@ -44,3 +44,14 @@
 
   right: 30px;
 }
+.test {
+  outline: none; /* 포커스 표시 제거 */
+  transition: box-shadow 0.3s ease;
+}
+
+/* 포커스 시 스타일 변경 */
+.test:hover {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+}

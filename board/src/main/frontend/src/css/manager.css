@@ -1,6 +1,6 @@
 .manager_main {
   width: 1500px;
-  height: 1400px;
+  height: 1000px;
   margin: 100px;
   /* background-color: brown; */
 }
@@ -8,15 +8,20 @@
 .manager_name {
   width: 400px;
   height: 100px;
-
-  /* background-color: aqua; */
   font-size: 30px;
 }
-
+.manager_name button {
+  border: none;
+  background-color: none;
+  background-color: white;
+}
+a.active-color,
+button.active-color {
+  color: #000;
+}
 .manager_link {
   width: 100px;
   height: 100px;
-  /* background-color: antiquewhite; */
 }
 .manager_link input {
   width: 500px;

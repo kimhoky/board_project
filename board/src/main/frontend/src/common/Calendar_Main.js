@@ -1,5 +1,7 @@
+// Calendar_Main.js
 import React, { useState } from "react";
 import "../css/calendar.css";
+import Img_Upload from "./Img_Upload";
 
 export default function Calendar_Main() {
   const [isToggleOn, setToggleOn] = useState(false);
@@ -9,15 +11,8 @@ export default function Calendar_Main() {
     setToggleOn(!isToggleOn);
   };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-
-    // FileReader를 사용하여 이미지를 미리 읽음
-    const reader = new FileReader();
-    reader.onload = ({ target }) => {
-      setUploadedImage(target.result);
-    };
-    reader.readAsDataURL(file);
+  const handleImageUpload = (imageData) => {
+    setUploadedImage(imageData);
   };
 
   return (
@@ -49,20 +44,7 @@ export default function Calendar_Main() {
           </fieldset>
 
           {/* 파일 업로드 필드 */}
-          {isToggleOn && (
-            <>
-              <label htmlFor="file" className="btn-upload">
-                <span>파일 업로드하기</span>
-              </label>
-              <input
-                type="file"
-                name="file"
-                id="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-              />
-            </>
-          )}
+          {isToggleOn && <Img_Upload onImageUpload={handleImageUpload} />}
         </aside>
       </div>
     </main>

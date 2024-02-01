@@ -15,6 +15,7 @@ import Writing from "./pages/Writing";
 import Post from "./pages/Post";
 import Calendar from "./pages/Calendar";
 import Manager from "./pages/Manager";
+import MyPage from "./common/MyPage";
 
 import { ThemeProvider } from "./context/themeProvider";
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="calendar" element={<Calendar />} />
           <Route path="/post/:board_ID" element={<Post />} />
           <Route path="manager" element={<Manager />} />
+          <Route path="MyPage" element={<MyPage />} />
         </Routes>
       </ThemeProvider>
       <Footer />
