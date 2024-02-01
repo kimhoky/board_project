@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import BookMark from "./BookMark";
 
 export default function Header() {
   const [loginID, setLoginID] = useState("로그인");
@@ -134,9 +135,10 @@ export default function Header() {
           {loginID}
         </Link>
         <Link to="/board">게시판</Link>
-        <Link className="test" to="/3">
-          3
-        </Link>
+        <button className="header_bookmark">
+          구독 게시판 ▼
+          <BookMark />
+        </button>
       </nav>
       <div>
         <a href="#">
