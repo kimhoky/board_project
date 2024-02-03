@@ -108,7 +108,7 @@ export default function Header() {
   return (
     <header className="mw">
       <h1>
-        <Link to="/main">
+        <Link to="/">
           <div className="logo">
             <img src="/assets/image.png" alt="로고" />
           </div>
