@@ -20,7 +20,7 @@ function SignUp() {
                      document.location.href = "/signup";
                 } else if (response.data != null) {
                      console.log(response.data);
-                     document.location.href = localStorage.getItem('lastVisitedPath');
+                     document.location.href = "/login"
                 } else {
                      console.log("잘못된 접근");
                      console.log(response.data);
