@@ -25,7 +25,11 @@ function App() {
   useEffect(() => {
     // 페이지 이동 시 localStorage에 현재 주소를 저장
     if (location.pathname != "/login") {
-      localStorage.setItem("lastVisitedPath", location.pathname);
+      if (location.pathname == "/signup") {
+            localStorage.setItem("lastVisitedPath", "/login");
+      } else {
+            localStorage.setItem("lastVisitedPath", location.pathname);
+      }
     }
   }, [location.pathname]);
 

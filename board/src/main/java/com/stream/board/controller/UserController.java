@@ -29,11 +29,12 @@ public class UserController {
 
     @PostMapping("/member/save")    // name값을 requestparam에 담아온다
     public String save(@ModelAttribute UserDTO userDTO) {
-        System.out.println("MemberController.save");
-        System.out.println("userDTO = " + userDTO);
-        userService.save(userDTO);
+        boolean signupUser = userService.save(userDTO);
+        if (!signupUser) {
+            return "false";
+        }
 
-        return "/index";
+        return "true";
     }
 
     @PostMapping("/member/login")

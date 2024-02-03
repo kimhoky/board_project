@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const Login = ({ onLogin }) => {
@@ -53,6 +54,7 @@ const Login = ({ onLogin }) => {
                         <button type="submit">전송</button>
                     </div>
                 </form>
+                <Link to="/signup">회원가입</Link>
             </div>
         );
 }
