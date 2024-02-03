@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import BoardBanner from "../common/BoardBanner";
 import BoardList from "../common/BoardList";
-import Sidebar from "../common/Sidebar";
 import axios from "axios";
-import "../common/Calendar";
-import Calendar from "../common/Calendar";
 
 export default function Board() {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [boards, setBoards] = useState([]);
   const [isGridView, setIsGridView] = useState(false);
-
   const createdAt = new Date();
 
   const handleBookmarkClick = () => {
@@ -40,25 +36,32 @@ export default function Board() {
   }, []);
 
   return (
-    <main style={{ display: "flex", maxWidth: "1500px" }}>
-      <Sidebar style={{ flex: "0 0 auto" }} /> {/* 사이드바 */}
-      <div style={{ flex: "1", display: "flex", flexDirection: "row" }}>
-        <div style={{ flex: "1", display: "flex", flexDirection: "column" }}>
-          <BoardBanner
-            isBookmarked={isBookmarked}
-            handleBookmarkClick={handleBookmarkClick}
-            handleGridViewClick={handleGridViewClick}
-          />
-          <div style={{ display: "flex", flexDirection: "row", flex: "1" }}>
-            <BoardList
-              boards={boards}
-              isGridView={isGridView}
-              createdAt={createdAt}
-            />
-            <Calendar />
-          </div>
-        </div>
+    <main id="main" style={{ flex: "1" }}>
+      <BoardBanner
+        isBookmarked={isBookmarked}
+        handleBookmarkClick={handleBookmarkClick}
+      />
+      <BoardList
+        boards={boards}
+        isGridView={isGridView}
+        createdAt={createdAt}
+      />
+      <div className="calendar_container">
+        <div className="calendar"> 캘린더</div>
+        <div className="calendar_box">캘린더 내용을 입력해주세요</div>
       </div>
+    </main>
+  );
+}
+
+
+import Sidebar from "../common/Sidebar";
+import Board_Main from "../common/Board_Main";
+export default function Board() {
+  return (
+    <main style={{ display: "flex", maxWidth: "1500px" }}>
+      <Sidebar style={{ flex: "1" }} />
+      <Board_Main style={{ flex: "1" }} />
     </main>
   );
 }

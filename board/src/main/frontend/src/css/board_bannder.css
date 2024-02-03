@@ -1,0 +1,38 @@
+/*그리드 리스트 버튼*/
+.header_control {
+  display: flex;
+}
+.LB_button {
+  width: 100px;
+  height: 50px;
+}
+.list_button {
+  margin: 10px;
+}
+/*말머리*/
+.billet_point {
+  margin: 10px;
+  border: 1px solid #403c3c;
+  border-radius: 10px;
+  background-color: white;
+}
+.billet_point > button {
+  margin: 5px;
+  background: none;
+  border: none;
+  border-radius: 5px;
+}
+/*말머리 필터 */
+.billet_list {
+  margin: 10px;
+  border: 0.3px solid #6c5ce7; /*색 임시 지정*/
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+.billet_list > span {
+  border-radius: 10px;
+}
+select {
+  border: none;
+}
