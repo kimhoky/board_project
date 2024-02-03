@@ -13,6 +13,10 @@ export default function Header() {
 
   const [dynamicPath, setDynamicPath] = useState("/login");
 
+  const [mypage, setMypage] = useState("");
+
+  const [mypagePath, setMypagePath] = useState("");
+
   const [dynamicEvent, setDynamicEvent] = useState();
 
   const handleInputChange = (e) => {
@@ -69,14 +73,16 @@ export default function Header() {
 
           // 사용자 아이디 추출 및 상태 업데이트
           const userID = response.data;
-          console.log(userID);
+          console.log("userID" + userID);
           setLoginID(userID);
           setDynamicPath();
+          setMypage("마이페이지");
+          setMypagePath(`/MyPage/${userID}`);
+
+          console.log("dksgl" + `/MyPage/${loginID}`);
 
           // 토큰이 있을 때만 로그아웃 이벤트를 설정
           setDynamicEvent(() => handleLogout);
-        } else {
-          setLoginID("로그인");
         }
       } catch (error) {
         // 에러 처리
@@ -96,8 +102,10 @@ export default function Header() {
         localStorage.removeItem("userToken");
 
         // 서버에 로그아웃 요청을 보냄
-        await axios.post("/member/logout");
-
+        await axios.post("/user/logout");
+        if (localStorage.getItem("lastVisitedPath") === `/MyPage/${loginID}`) {
+                      document.location.href = "/";
+        }
         document.location.href = localStorage.getItem("lastVisitedPath");
       } catch (error) {
         console.error("Error during logout:", error);
@@ -134,6 +142,7 @@ export default function Header() {
         <Link className="로그인" to={dynamicPath} onClick={dynamicEvent}>
           {loginID}
         </Link>
+        <Link to={mypagePath} className="마이페이지">{mypage}</Link>
         <Link to="/board">게시판</Link>
         <button className="header_bookmark">
           구독 게시판 ▼

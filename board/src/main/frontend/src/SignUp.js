@@ -9,7 +9,7 @@ function SignUp() {
             e.preventDefault();
 
             try {
-                const response = await axios.post('/member/save', null, { params : {
+                const response = await axios.post('/user/save', null, { params : {
                     User_ID: User_ID,
                     User_password: User_password,
                     User_name: User_name,

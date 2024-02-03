@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/member/save")    // name값을 requestparam에 담아온다
+    @PostMapping("/user/save")    // name값을 requestparam에 담아온다
     public String save(@ModelAttribute UserDTO userDTO) {
         boolean signupUser = userService.save(userDTO);
         if (!signupUser) {
@@ -37,7 +37,7 @@ public class UserController {
         return "true";
     }
 
-    @PostMapping("/member/login")
+    @PostMapping("/user/login")
     public String login(@ModelAttribute UserDTO user, HttpServletRequest request) {
         UserDTO loginUser = userService.login(user.getUser_ID(), user.getUser_password());
 
@@ -54,7 +54,7 @@ public class UserController {
         return token;
     }
 
-    @PostMapping("/member/logout")
+    @PostMapping("/user/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
@@ -68,5 +68,11 @@ public class UserController {
         String userId = jwtTokenProvider.getUserIdFromToken(token);
 
         return userId;
+    }
+
+    @GetMapping("/user/check")
+    public UserDTO getUserdata(String User_ID) {
+        UserDTO userDTO = userService.check(User_ID);
+        return userDTO;
     }
 }

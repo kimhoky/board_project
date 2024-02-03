@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import "../css/mypage.css";
 
 export default function MyPage() {
   const data = [1, 2, 3];
+  const [user, setUser] = useState([]);
+  const { toUserID } = useParams();
   const [btnActive, setBtnActive] = useState(null);
   const toggleActive = (idx) => {
     setBtnActive(idx === btnActive ? null : idx);
   };
+  useEffect(() => {
+    const fetchUserData = async () => {
+        try {
+            console.log("toUserID " + toUserID);
+            const response = await axios.get(`/user/check?User_ID=${toUserID}`);
+            setUser(response.data);
+            console.log(response.data);
+        }catch (error) {
+            console.error("Error fetching boards:", error);
+        }
+    }
+    fetchUserData();
+  }, [toUserID]);
   return (
     <main className="mypage_container">
       <nav className="mypage_nav">
-        <h2>내정보 설정</h2>
+        <h2>{user.user_name}</h2>
         {data.map((item, idx) => (
           <button
             key={idx}

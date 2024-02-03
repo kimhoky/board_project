@@ -10,7 +10,7 @@ const Login = ({ onLogin }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/member/login', null, { params : {
+            const response = await axios.post('/user/login', null, { params : {
                 User_ID: User_ID,
                 User_password: User_password
             }});

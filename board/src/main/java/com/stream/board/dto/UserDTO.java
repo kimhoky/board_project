@@ -12,6 +12,10 @@ public class UserDTO {
     private String User_ID;
     private String User_password;
     private String User_name;
+    private String User_favorite;
+    private String User_profile;
+    private int is_Streamer;
+    private String User_role;
 
     // 기본 생성자
     public UserDTO() {

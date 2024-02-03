@@ -50,7 +50,7 @@ function App() {
           <Route path="calendar" element={<Calendar />} />
           <Route path="/post/:board_ID" element={<Post />} />
           <Route path="manager" element={<Manager />} />
-          <Route path="MyPage" element={<MyPage />} />
+          <Route path="/MyPage/:toUserID" element={<MyPage />} />
         </Routes>
       </ThemeProvider>
       <Footer />
