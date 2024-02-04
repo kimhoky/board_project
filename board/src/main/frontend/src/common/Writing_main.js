@@ -3,8 +3,7 @@ import "../css/writing.css";
 import axios from "axios";
 import PropTypes from 'prop-types'; // 추가
 import { useLocation } from 'react-router-dom';
-import moment from 'moment';
-import qs from 'qs';
+
 
 
 export default function Writing() {
