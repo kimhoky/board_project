@@ -10,8 +10,20 @@ export default function BookMark() {
   return (
     <main>
       <section className={`bookmark_container ${isExpanded ? "expanded" : ""}`}>
-        <Link>
-          <article className="manger_banner">배너이미지</article>
+        <Link to={"/1"}>
+          <img src=".\assets\banner_img.jpg" className="bookmark_image" />
+        </Link>
+        <Link to={"/1"}>
+          <img src=".\assets\banner_img.jpg" className="bookmark_image" />
+        </Link>
+        <Link to={"/1"}>
+          <img src=".\assets\banner_img.jpg" className="bookmark_image" />
+        </Link>
+        <Link to={"/1"}>
+          <img src=".\assets\banner_img.jpg" className="bookmark_image" />
+        </Link>
+        <Link to={"/1"}>
+          <img src=".\assets\banner_img.jpg" className="bookmark_image" />
         </Link>
       </section>
     </main>
