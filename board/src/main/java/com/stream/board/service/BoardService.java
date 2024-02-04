@@ -2,7 +2,7 @@ package com.stream.board.service;
 
 import com.stream.board.dto.BoardDTO;
 import com.stream.board.entity.BoardEntity;
-import com.stream.board.entity.UserEntity;
+
 import com.stream.board.repository.BoardRepository;
 import com.stream.board.repository.BoardingRepository;
 import lombok.RequiredArgsConstructor;
