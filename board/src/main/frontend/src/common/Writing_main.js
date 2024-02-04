@@ -3,12 +3,14 @@ import "../css/writing.css";
 import axios from "axios";
 import PropTypes from 'prop-types'; // 추가
 import { useLocation } from 'react-router-dom';
-
+import moment from 'moment';
+import qs from 'qs';
 
 
 export default function Writing() {
   const [boardTitle, setBoardTitle] = useState("");
   const [boardContent, setBoardContent] = useState("");
+  const [boardID, setBoardID] = useState(3);
   const [loginID, setLoginID] = useState("");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
@@ -24,6 +26,8 @@ const location = useLocation();
   const toggleItalic = () => setIsItalic(!isItalic);
   const toggleUnderline = () => setIsUnderline(!isUnderline);
   const toggleStrikeThrough = () => setIsStrikeThrough(!isStrikeThrough);
+const [currentDate, setCurrentDate] = useState(new Date().toISOString());
+
 
 
 
@@ -62,6 +66,9 @@ const location = useLocation();
 
           const userID = response.data;
           setLoginID(userID);
+
+
+
         } else {
           setLoginID("로그인");
         }
@@ -81,25 +88,64 @@ const location = useLocation();
     setBoardContent(e.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+e.preventDefault();
 
     try {
-      const response = await axios.post("/board/save", null, {
-        params: {
-          Board_title: boardTitle,
-          Board_content: boardContent,
-          Community_ID: "1",
-          Writer_ID: loginID,
-        },
-      });
+
+const response = await axios.post("/board/save", null,  {
+params: {
+Board_title: boardTitle,
+  Board_content: boardContent,
+  Community_ID: "1",
+  Writer_ID: loginID,
+ // Board_write_date: new Date(),
+
+}
+
+
+
+
+});
+
 
       console.log("Server Response:", response.data);
 
       // 폼 제출 후에 /board로 이동
       window.location.href = "/board";
     } catch (error) {
-      console.error("Error saving board data:", error);
+      console.error("Error saving board data:", error.response);
+    }
+  };
+
+const handleEdit = async (e) => {
+e.preventDefault();
+
+    try {
+
+const response = await axios.post("/board/update", null,  {
+params: {
+Board_title: boardTitle,
+  Board_content: boardContent,
+  Community_ID: "1",
+  Writer_ID: loginID,
+  Board_ID: boardID,
+ // Board_write_date: new Date(),
+
+}
+
+
+
+
+});
+
+
+      console.log("Server Response:", response.data);
+
+      // 폼 제출 후에 /board로 이동
+      window.location.href = "/board";
+    } catch (error) {
+      console.error("Error saving board data:", error.response);
     }
   };
 
@@ -112,6 +158,7 @@ console.log(dataList);
         console.log(dataList);
          setBoardTitle(dataList[0].board_title);
          setBoardContent(dataList[0].board_content);
+         setBoardID(dataList[0].board_ID);
 
         } else {
 
@@ -120,7 +167,6 @@ console.log(dataList);
         console.error("Error fetching user data:", error);
       }
     };
-
 fetchboardData();
   }, []);
 
@@ -140,7 +186,7 @@ fetchboardData();
       </div>
       <hr></hr>
       {/* 제목입력 */}
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
           name="Board_title"
@@ -214,9 +260,15 @@ fetchboardData();
             onChange={handleContentChange}
           ></textarea>
 
-          <button type="submit" className="registration">
-            등록
-          </button>
+           {dataList ? ( // dataList가 null이 아닌 경우
+                    <button type="submit" className="edit" onClick={handleEdit}>
+                      수정
+                    </button>
+                  ) : ( // dataList가 null인 경우
+                    <button type="submit" className="registration" onClick={handleSubmit}>
+                      등록
+                    </button>
+                      )}
         </div>
       </form>
     </div>

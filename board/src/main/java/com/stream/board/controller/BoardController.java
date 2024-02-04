@@ -2,11 +2,18 @@ package com.stream.board.controller;
 
 import com.stream.board.dto.BoardDTO;
 import com.stream.board.service.BoardService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,13 +38,38 @@ public class BoardController {
         return boardService.searchPosts(keyword);
     }
 
-
+    public Timestamp getCurrentTimestamp() {
+        Date currentDate = new Date();
+        return new Timestamp(currentDate.getTime());
+    }
 
     @PostMapping("/board/save")    // name값을 requestparam에 담아온다
-    public String save(@ModelAttribute BoardDTO BoardDTO) {
+    public String save(@ModelAttribute BoardDTO boardDTO) {
         System.out.println("boarddto.save");
-        System.out.println("boardDTO = " + BoardDTO);
-        boardService.save(BoardDTO);
+        System.out.println("boardDTO = " + boardDTO);
+        System.out.println("wid" + boardDTO.getWriter_ID());
+
+        if(boardDTO.getBoard_write_date()==null){
+        Timestamp time = getCurrentTimestamp();
+        boardDTO.setBoard_write_date(time);
+
+        boardService.save(boardDTO);}
+
+        return "redirect:/board";
+    }
+
+    @PostMapping("/board/update")    // name값을 requestparam에 담아온다
+    public String update(@ModelAttribute BoardDTO boardDTO) {
+        System.out.println("boarddto.update");
+        System.out.println("boardDTO = " + boardDTO);
+        System.out.println("wid" + boardDTO.getWriter_ID());
+
+
+            Timestamp time = getCurrentTimestamp();
+            boardDTO.setBoard_modify_date(time);
+
+            boardService.update(boardDTO);
+
         return "redirect:/board";
     }
 
