@@ -43,10 +43,16 @@ button.active-color {
 .manger_banner {
   width: 100%;
   height: 100%;
+  border-radius: 20px;
+  background-color: gray;
+  flex-direction: column;
+  font-size: 100px;
+  color: transparent;
 }
 .manager_button {
   display: flex;
+  margin-top: 10px;
 }
-.test {
-  display: none;
+.manager_button button {
+  border-radius: 10px;
 }

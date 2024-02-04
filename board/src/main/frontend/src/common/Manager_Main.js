@@ -41,13 +41,12 @@ export default function Manager_Main() {
               maxHeight: "150px",
               width: "100%",
               height: "100%",
+              borderRadius: "20px",
             }}
           />
         ) : (
           <>
-            <p className="test">배너 이미지</p>
-
-            <img className="manger_banner" src=".\assets\banner_img.jpg" />
+            <article className="manger_banner"> 배너이미지</article>
           </>
         )}
       </section>
