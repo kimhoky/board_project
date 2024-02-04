@@ -1,7 +1,5 @@
-import React from "react";
 import Mypage_Button from "./Mypage_Button";
 import BoardList from "./BoardList";
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";

@@ -91,7 +91,7 @@ export default function Header() {
     };
     // fetchUserData 함수 호출
     fetchUserData();
-  }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
+  }, [loginID]); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행
 
   const handleLogout = async () => {
     const userConfirmed = window.confirm("로그아웃 하시겠습니까?");
@@ -105,8 +105,9 @@ export default function Header() {
         await axios.post("/user/logout");
         if (localStorage.getItem("lastVisitedPath") === `/MyPage/${loginID}`) {
                       document.location.href = "/";
+        } else {
+            document.location.href = localStorage.getItem("lastVisitedPath");
         }
-        document.location.href = localStorage.getItem("lastVisitedPath");
       } catch (error) {
         console.error("Error during logout:", error);
       }
