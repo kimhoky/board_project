@@ -12,6 +12,21 @@ export default function Post_Content() {
   const { board_ID } = useParams();
 const navigate = useNavigate();
   console.log(board_ID);
+const [board_date, setBoard_date] = useState("");
+  // board_write_date를 포맷팅하는 함수
+  const formatBoardWriteDate = (boardWriteDate) => {
+    const date = new Date(boardWriteDate);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false,
+    };
+    return new Intl.DateTimeFormat('ko-KR', options).format(date);
+  };
 
 
    useEffect(() => {
@@ -48,6 +63,14 @@ const navigate = useNavigate();
           `/board/getboard?bid=${encodedBoardID}`
         );
         setBoards(response.data);
+        if(response.data[0].board_modify_date == null){
+        console.log(response.data[0].board_write_date);
+                setBoard_date(formatBoardWriteDate(response.data[0].board_write_date));
+        }else{
+                console.log(response.data[0].board_modify_date);
+                setBoard_date(formatBoardWriteDate(response.data[0].board_modify_date));
+        }
+
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching boards:", error);
@@ -122,7 +145,6 @@ const handleedit = async () => {
   };
 
 
-
   return (
     <div className="post_container">
       {boards.map((board) => (
@@ -144,7 +166,7 @@ const handleedit = async () => {
           <div className="post_top">
             <form>
               <div className="dt">
-                <span className="date">{board.write_date}</span>
+                <span className="date">{board_date}</span>
 
 
                 <span className="test">댓글</span>
@@ -208,4 +230,5 @@ const handleedit = async () => {
       </div>
     </div>
   );
+
 }

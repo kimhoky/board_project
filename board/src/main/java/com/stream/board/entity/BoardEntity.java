@@ -7,9 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -18,44 +21,44 @@ import java.sql.Timestamp;
 public class BoardEntity {
     @Id
     @Column(name="Board_ID")
-    private int BoardID;
+    private int Board_ID;
     @Column(name="Community_ID")
-    private int CommunityID;
+    private int Community_ID;
     @Column(name="Writer_ID")
-    private String WriterID;
+    private String Writer_ID;
     @Column(name="Board_tag")
-    private String Boardtag;
+    private String Board_tag;
     @Column(name="Board_title")
-    private String BoardTitle;
+    private String Board_title;
     @Column(name="Board_content")
-    private String Boardcontent;
+    private String Board_content;
     @Column(name="Board_media")
-    private String Boardmedia;
+    private String Board_media;
     @Column(name="Board_recomend")
-    private int Boardrecomend;
+    private int Board_recomend;
     @Column(name="Board_view")
-    private int Boardview;
+    private int Board_view;
     @Column(name="Board_write_date")
-    private Timestamp Boardwritedate;
+    private Timestamp Board_write_date;
     @Column(name="Board_modify_date")
-    private Timestamp Boardmodifydate;
+    private Timestamp Board_modify_date;
     @Column(name="Board_delete_date")
-    private Timestamp Boarddeletedate;
+    private Timestamp Board_delete_date;
 
     public static BoardEntity toBoardEntity(@RequestParam BoardDTO BoardDTO){
         BoardEntity boardEntity = new BoardEntity();
-        boardEntity.setBoardID(BoardDTO.getBoard_ID());
-        boardEntity.setCommunityID(BoardDTO.getCommunity_ID());
-        boardEntity.setWriterID(BoardDTO.getWriter_ID());
-        boardEntity.setBoardtag(BoardDTO.getBoard_tag());
-        boardEntity.setBoardTitle(BoardDTO.getBoard_title());
-        boardEntity.setBoardcontent(BoardDTO.getBoard_content());
-        boardEntity.setBoardmedia(BoardDTO.getBoard_media());
-        boardEntity.setBoardrecomend(BoardDTO.getBoard_recomend());
-        boardEntity.setBoardview(BoardDTO.getBoard_view());
-        boardEntity.setBoardwritedate(BoardDTO.getBoard_write_date());
-        boardEntity.setBoardmodifydate(BoardDTO.getBoard_modify_date());
-        boardEntity.setBoarddeletedate(BoardDTO.getBoard_delete_date());
+        boardEntity.setBoard_ID(BoardDTO.getBoard_ID());
+        boardEntity.setCommunity_ID(BoardDTO.getCommunity_ID());
+        boardEntity.setWriter_ID(BoardDTO.getWriter_ID());
+        boardEntity.setBoard_tag(BoardDTO.getBoard_tag());
+        boardEntity.setBoard_title(BoardDTO.getBoard_title());
+        boardEntity.setBoard_content(BoardDTO.getBoard_content());
+        boardEntity.setBoard_media(BoardDTO.getBoard_media());
+        boardEntity.setBoard_recomend(BoardDTO.getBoard_recomend());
+        boardEntity.setBoard_view(BoardDTO.getBoard_view());
+        boardEntity.setBoard_write_date(BoardDTO.getBoard_write_date());
+        boardEntity.setBoard_modify_date(BoardDTO.getBoard_modify_date());
+        boardEntity.setBoard_delete_date(BoardDTO.getBoard_delete_date());
 
         return boardEntity;
     }
