@@ -63,7 +63,7 @@ public class UserController {
     }
 
     @GetMapping("/api/user")
-    public String getUserDetails(@RequestHeader(value = "Authorization") String token) {
+    public String getUserID(@RequestHeader(value = "Authorization") String token) {
         System.out.println("/api/user          " + token);
         String userId = jwtTokenProvider.getUserIdFromToken(token);
 

@@ -60,7 +60,6 @@ export default function Header() {
       try {
         // localStorage에서 토큰 가져오기
         const token = localStorage.getItem("userToken");
-        console.log(token);
 
         if (token != null) {
           // 토큰을 서버에 전달하여 사용자 정보 가져오기
@@ -77,7 +76,7 @@ export default function Header() {
           setLoginID(userID);
           setDynamicPath();
           setMypage("마이페이지");
-          setMypagePath(`/MyPage/${userID}`);
+          setMypagePath("/MyPage");
 
           console.log("dksgl" + `/MyPage/${loginID}`);
 
@@ -103,7 +102,7 @@ export default function Header() {
 
         // 서버에 로그아웃 요청을 보냄
         await axios.post("/user/logout");
-        if (localStorage.getItem("lastVisitedPath") === `/MyPage/${loginID}`) {
+        if (localStorage.getItem("lastVisitedPath") === "/MyPage") {
                       document.location.href = "/";
         } else {
             document.location.href = localStorage.getItem("lastVisitedPath");

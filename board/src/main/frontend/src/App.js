@@ -22,21 +22,28 @@ import { ThemeProvider } from "./context/themeProvider";
 
 function App() {
   const location = useLocation();
+  const [token, setToken] = useState(null);
+  const [userId, setUserId] = useState("");
+  const [toUserID, setToUserID] = useState("token");
+
+    const handleLogin = (newToken, newUserId) => {
+      setToken(newToken);
+      setUserId(newUserId);
+    };
 
   useEffect(() => {
     // 페이지 이동 시 localStorage에 현재 주소를 저장
     if (location.pathname != "/login" && location.pathname != "/signup") {
       localStorage.setItem("lastVisitedPath", location.pathname);
+      console.log("t+u" + token + userId);
     }
   }, [location.pathname]);
 
-  const [token, setToken] = useState(null);
-  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    // userId가 변경될 때마다 toUserID를 업데이트
+    setToUserID(userId);
+  }, [userId]);
 
-  const handleLogin = (newToken, newUserId) => {
-    setToken(newToken);
-    setUserId(newUserId);
-  };
   return (
     <div>
       <Header />
@@ -51,8 +58,7 @@ function App() {
           <Route path="calendar" element={<Calendar />} />
           <Route path="/post/:board_ID" element={<Post />} />
           <Route path="manager" element={<Manager />} />
-          <Route path="/MyPage/:toUserID" element={<MyPage />} />
-          <Route path="MyPage" element={<MyPage />} />
+          <Route path="MyPage" element={<MyPage toUserID={toUserID} />} />
           <Route path="Calendar_2" element={<Calendar_2 />} />
         </Routes>
       </ThemeProvider>
