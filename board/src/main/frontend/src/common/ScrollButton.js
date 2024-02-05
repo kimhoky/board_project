@@ -1,51 +1,65 @@
-// ScrollButton.js
-
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import "../css/scrollbutton.css";
 
-export default function ScrollButton({ targetRef, handleMoveToRef }) {
-  // 화면 상단으로 스크롤 이동
+export default function ScrollButton() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
   const handleMoveToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // 화면 하단으로 스크롤 이동
   const handleMoveToBottom = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   };
 
-  // 지정된 타겟 요소로 스크롤 이동
-  //   const handleMoveToTargetClass = () => {
-  //     if (targetRef && targetRef.current) {
-  //       // handleMoveToRef 함수에 targetRef 전달하여 스크롤 이동
-  //       handleMoveToRef(targetRef);
-  //     }
-  //   };
+  const handleResize = () => {
+    // 현재 화면의 가로 크기를 가져옴
+    const windowWidth = window.innerWidth;
+
+    // 화면의 가로 크기에 따라 동작을 변경
+    if (windowWidth < 768) {
+      // 화면 가로 크기가 768px 미만이면 추가 동작 수행(추후)
+      console.log("화면이 좁아짐");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    // 초기화 시에도 실행
+    handleResize();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <div className="test_container">
-      {/* 화면 상단으로 스크롤 이동하는 버튼 */}
-      <button className="button_top_scroll" onClick={handleMoveToTop}>
-        t
-      </button>
-      {/* 화면 하단으로 스크롤 이동하는 버튼 */}
-      <button className="button_bottom_scroll" onClick={handleMoveToBottom}>
-        b
-      </button>
-      {/* 지정된 타겟 요소로 스크롤 이동하는 버튼
+    <div className="scroll_btn_container">
       <button
-        className="button_move_to_target"
-        onClick={handleMoveToTargetClass}
+        id="scroll_btn_top"
+        className={isVisible ? "show" : ""}
+        onClick={handleMoveToTop}
       >
-        Move to Target
-      </button> */}
+        ^
+      </button>
+      <button
+        id="scroll_btn_bottom"
+        className={isVisible ? "show" : ""}
+        onClick={handleMoveToBottom}
+      >
+        v
+      </button>
     </div>
   );
 }
-
-// PropTypes 추가
-ScrollButton.propTypes = {
-  targetRef: PropTypes.object.isRequired,
-  handleMoveToRef: PropTypes.func.isRequired,
-};

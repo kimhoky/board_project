@@ -1,19 +1,38 @@
-/* 부모 요소에 스크롤 기능 추가 */
-.parent-container {
-  overflow: auto;
-}
-
-.test_container {
+.scroll_btn_container {
   display: flex;
-  justify-content: flex-end;
 }
-
-.test_container button {
+#scroll_btn_top {
   width: 30px;
   height: 30px;
-  border-radius: 100px;
-  display: flex;
-  float: right; /*우측이동*/
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 100%;
+  padding: 10px;
+  cursor: pointer;
+  display: none;
+  margin-right: 50px;
+}
+#scroll_btn_bottom {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 100%;
+  padding: 10px;
+  cursor: pointer;
+  display: none;
+  margin-right: 10px;
+}
+
+#scroll_btn_top.show,
+#scroll_btn_bottom.show {
+  display: block;
 }

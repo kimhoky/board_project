@@ -54,7 +54,7 @@
   margin: 0 auto;
   margin-bottom: 20px;
   border: 1px solid #403c3c;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .board_1 img {
   opacity: 0.5;
