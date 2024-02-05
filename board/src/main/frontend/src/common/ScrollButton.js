@@ -45,7 +45,7 @@ export default function ScrollButton() {
   }, []);
 
   return (
-    <div className="scroll_btn_container">
+    <div className="scroll_btn_container!">
       <button
         id="scroll_btn_top"
         className={isVisible ? "show" : ""}
