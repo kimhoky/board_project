@@ -24,14 +24,14 @@ export default function ScrollButton({ targetRef, handleMoveToRef }) {
   //   };
 
   return (
-    <div className="test_c">
+    <div className="test_container">
       {/* 화면 상단으로 스크롤 이동하는 버튼 */}
       <button className="button_top_scroll" onClick={handleMoveToTop}>
-        ^
+        t
       </button>
       {/* 화면 하단으로 스크롤 이동하는 버튼 */}
       <button className="button_bottom_scroll" onClick={handleMoveToBottom}>
-        1
+        b
       </button>
       {/* 지정된 타겟 요소로 스크롤 이동하는 버튼
       <button

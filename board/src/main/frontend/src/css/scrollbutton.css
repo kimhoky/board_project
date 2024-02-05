@@ -1,12 +1,19 @@
-.test_c {
+/* 부모 요소에 스크롤 기능 추가 */
+.parent-container {
+  overflow: auto;
+}
+
+.test_container {
   display: flex;
   justify-content: flex-end;
 }
-.test_c button {
+
+.test_container button {
   width: 30px;
   height: 30px;
   border-radius: 100px;
-  bottom: 0;
   display: flex;
-  margin-right: 10px;
+  float: right; /*우측이동*/
+  position: sticky;
+  bottom: 0;
 }

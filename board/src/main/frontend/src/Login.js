@@ -44,19 +44,19 @@ const Login = ({ onLogin }) => {
       <h1>로그인하기</h1>
       <form action="/member/login" method="post" onSubmit={handleSubmit}>
         <div>
-          <label>로그인 ID</label>
           <input
             type="text"
             name="User_ID"
+            placeholder="Email"
             value={User_ID}
             onChange={(e) => setUser_ID(e.target.value)}
           />
         </div>
         <div>
-          <label>비밀번호</label>
           <input
             type="password"
             name="User_password"
+            placeholder="Password"
             value={User_password}
             onChange={(e) => setUser_password(e.target.value)}
           />
