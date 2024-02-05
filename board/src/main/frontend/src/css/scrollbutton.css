@@ -1,0 +1,12 @@
+.test_c {
+  display: flex;
+  justify-content: flex-end;
+}
+.test_c button {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  bottom: 0;
+  display: flex;
+  margin-right: 10px;
+}

@@ -17,6 +17,7 @@ import Calendar from "./pages/Calendar";
 import Manager from "./pages/Manager";
 import MyPage from "./common/MyPage";
 import Calendar_2 from "./common/Calendar";
+import ScrollButton from "./common/ScrollButton";
 
 import { ThemeProvider } from "./context/themeProvider";
 
@@ -26,10 +27,10 @@ function App() {
   const [userId, setUserId] = useState("");
   const [toUserID, setToUserID] = useState("token");
 
-    const handleLogin = (newToken, newUserId) => {
-      setToken(newToken);
-      setUserId(newUserId);
-    };
+  const handleLogin = (newToken, newUserId) => {
+    setToken(newToken);
+    setUserId(newUserId);
+  };
 
   useEffect(() => {
     // 페이지 이동 시 localStorage에 현재 주소를 저장
@@ -62,6 +63,7 @@ function App() {
           <Route path="Calendar_2" element={<Calendar_2 />} />
         </Routes>
       </ThemeProvider>
+      <ScrollButton />
       <Footer />
     </div>
   );

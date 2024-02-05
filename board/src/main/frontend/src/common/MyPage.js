@@ -16,46 +16,50 @@ export default function MyPage() {
   };
   useEffect(() => {
     const fetchUserData = async () => {
-        try {
-            // localStorage에서 토큰 가져오기
-            const token = localStorage.getItem("userToken");
+      try {
+        // localStorage에서 토큰 가져오기
+        const token = localStorage.getItem("userToken");
 
-            // 토큰을 서버에 전달하여 사용자 정보 가져오기
-            const response = await axios.get("/api/user", {
-                headers: {
-                    Authorization: `${token}`,
-                },
-            });
-            setUserID(response.data);
-            const userdata = await axios.get(`/user/check?User_ID=${userID}`);
-            setUser(userdata.data);
-            console.log(userdata.data);
-        }catch (error) {
-            console.error("Error fetching boards:", error);
-        }
-    }
+        // 토큰을 서버에 전달하여 사용자 정보 가져오기
+        const response = await axios.get("/api/user", {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
+        setUserID(response.data);
+        const userdata = await axios.get(`/user/check?User_ID=${userID}`);
+        setUser(userdata.data);
+        console.log(userdata.data);
+      } catch (error) {
+        console.error("Error fetching boards:", error);
+      }
+    };
     fetchUserData();
   }, [userID]);
 
   useEffect(() => {
-      const fetchBoards = async () => {
-        try {
-          if(userID) {
-            const response = await axios.get(`/board/search?searchText=${userID}`);
-            setBoards(response.data);
-            console.log(response.data);
-          }
-        } catch (error) {
-          console.error("Error fetching boards:", error);
+    const fetchBoards = async () => {
+      try {
+        if (userID) {
+          const response = await axios.get(
+            `/board/search?searchText=${userID}`
+          );
+          setBoards(response.data);
+          console.log(response.data);
         }
-      };
+      } catch (error) {
+        console.error("Error fetching boards:", error);
+      }
+    };
 
-      fetchBoards();
-    }, [userID]);
+    fetchBoards();
+  }, [userID]);
 
   return (
     <main className="mypage_container">
-      <nav className="mypage_nav">        <Mypage_Button />
+      <nav className="mypage_nav">
+        {" "}
+        <Mypage_Button />
       </nav>
 
       <div className="mypage_content">
@@ -92,28 +96,28 @@ export default function MyPage() {
               <hr />
             </a>
             <section className="board_set">
-                    {boards.slice(0, 8).map((board) => (
-                      <Link
-                        to={`/post/${board.board_ID}`}
-                        key={board.board_ID}
-                        className={`board_1 `}
-                      >
-                        <span>{board.board_tag}</span>
-                        <h2>
-                          {board.board_title} <p>[5]</p>
-                        </h2>
-                        <img
-                          src="/assets/board_test_img.jpg"
-                          alt="Board Image"
-                          className="board-image"
-                        />
-                        <p>{board.writer_ID}</p>
-                        <p></p>
-                        <p>조회수:5</p>
-                        <p>추천:5</p>
-                      </Link>
-                    ))}
-                  </section>
+              {boards.slice(0, 8).map((board) => (
+                <Link
+                  to={`/post/${board.board_ID}`}
+                  key={board.board_ID}
+                  className={`board_1 `}
+                >
+                  <span>{board.board_tag}</span>
+                  <h2>
+                    {board.board_title} <p>[5]</p>
+                  </h2>
+                  <img
+                    src="/assets/board_test_img.jpg"
+                    alt="Board Image"
+                    className="board-image"
+                  />
+                  <p>{board.writer_ID}</p>
+                  <p></p>
+                  <p>조회수:5</p>
+                  <p>추천:5</p>
+                </Link>
+              ))}
+            </section>
           </article>
           <article className="mypage_comment">
             <a>
