@@ -3,12 +3,13 @@ import BoardList from "./BoardList";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+
 import "../css/mypage.css";
+import "../css/mypage_change.css";
 
 export default function MyPage() {
   const [user, setUser] = useState([]);
   const [userID, setUserID] = useState("");
-  const [boards, setBoards] = useState([]);
   const [btnActive, setBtnActive] = useState(null);
   const toggleActive = (idx) => {
     setBtnActive(idx === btnActive ? null : idx);
@@ -35,25 +36,6 @@ export default function MyPage() {
     };
     fetchUserData();
   }, [userID]);
-
-  useEffect(() => {
-    const fetchBoards = async () => {
-      try {
-        if (userID) {
-          const response = await axios.get(
-            `/board/search?searchText=${userID}`
-          );
-          setBoards(response.data);
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching boards:", error);
-      }
-    };
-
-    fetchBoards();
-  }, [userID]);
-
   return (
     <main className="mypage_container">
       <nav className="mypage_nav">
@@ -87,48 +69,6 @@ export default function MyPage() {
           </article>
         </section>
         <div className="vertical"></div>
-
-        <section className="mypage_user_history">
-          <article className="mypage_board">
-            <a>
-              최근 게시글
-              <hr />
-            </a>
-            <section className="board_set">
-              {boards.slice(0, 8).map((board) => (
-                <Link
-                  to={`/post/${board.board_ID}`}
-                  key={board.board_ID}
-                  className={`board_1 `}
-                >
-                  <span>{board.board_tag}</span>
-                  <h2>
-                    {board.board_title} <p>[5]</p>
-                  </h2>
-                  <img
-                    src="/assets/board_test_img.jpg"
-                    alt="Board Image"
-                    className="board-image"
-                  />
-                  <p>{board.writer_ID}</p>
-                  <p></p>
-                  <p>조회수:5</p>
-                  <p>추천:5</p>
-                </Link>
-              ))}
-            </section>
-          </article>
-          <article className="mypage_comment">
-            <a>
-              최신 댓글
-              <hr />
-            </a>
-            <button>게시글</button>
-            <button>게시글</button>
-            <button>게시글</button>
-            <button>더보기</button>
-          </article>
-        </section>
       </div>
     </main>
   );

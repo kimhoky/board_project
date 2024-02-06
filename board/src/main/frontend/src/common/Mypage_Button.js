@@ -7,6 +7,7 @@ function Button() {
 
   const toggleActive = (idx) => {
     setBtnActive(idx === btnActive ? null : idx);
+    console.log(idx, "클릭");
   };
   return (
     <div className="btn_box">
