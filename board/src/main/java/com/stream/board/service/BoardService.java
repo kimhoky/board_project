@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +42,9 @@ public class BoardService {
         boardRepository.update(boardEntity);
     }
 
-    public void deletePost(String keyword, String keyword2){
+    public void deletePost(Timestamp keyword, String keyword2, String keyword3){
 
-        boardRepository.deleteDataByKeyword(keyword, keyword2);
+        boardRepository.deleteDataByKeyword(keyword, keyword2, keyword3);
     }
     public List<BoardDTO> editPost(String keyword, String keyword2){
 
