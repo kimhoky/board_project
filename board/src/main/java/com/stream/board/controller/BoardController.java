@@ -87,8 +87,9 @@ public class BoardController {
     }
 
     @GetMapping("/board/del")
-    public void delete(@RequestParam(value = "deleteboardid") String keyword, @RequestParam(value = "deletewriterid") String keyword2){
-        boardService.deletePost(keyword, keyword2);
+    public void delete(@RequestParam(value = "deleteboardid") String keyword2, @RequestParam(value = "deletewriterid") String keyword3){
+        Timestamp keyword = getCurrentTimestamp();
+        boardService.deletePost(keyword ,keyword2, keyword3);
     }
 
     @GetMapping("/board/edit")

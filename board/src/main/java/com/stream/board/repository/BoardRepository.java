@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.List;
 @Repository
 public class BoardRepository {
@@ -32,17 +33,14 @@ public List<BoardDTO> findDataByKeyword(String keyword) {
     return jdbcTemplate.query(sql, new Object[]{formattedKeyword, formattedKeyword, formattedKeyword}, new BeanPropertyRowMapper<>(BoardDTO.class));
 }
 
-public void deleteDataByKeyword(String keyword, String keyword2){
-    int rowsAffected =  jdbcTemplate.update(
-            "DELETE FROM board WHERE Board_ID = ? AND Writer_ID = ?",
-            keyword, keyword2
-    );
-    if (rowsAffected > 0) {
-        // 성공적으로 삭제된 경우
-        // 이 부분에서 성공적으로 삭제되었다는 메시지를 클라이언트로 전달하도록 처리할 수 있습니다.
-    } else {
-        // 삭제할 데이터가 없거나, SQL 실행에 문제가 생긴 경우
-        throw new RuntimeException("Failed to delete data");
+public void deleteDataByKeyword(Timestamp keyword, String keyword2, String keyword3){
+    try {
+    String sql = "UPDATE board SET Board_delete_date = ? WHERE Board_ID = ? AND Writer_ID = ?";
+    jdbcTemplate.update(sql, keyword, keyword2, keyword3 );
+
+    } catch (Exception e) {
+        // 다른 예외 발생 시
+        throw new RuntimeException("Failed to delete data", e);
     }
 }
 
