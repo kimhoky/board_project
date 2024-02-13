@@ -1,9 +1,9 @@
 import Mypage_Button from "./Mypage_Button";
-import BoardList from "./BoardList";
+// import BoardList from "./BoardList";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import "../css/mypage.css";
+import "../../css/mypage.css";
 
 export default function MyPage() {
   const [user, setUser] = useState([]);

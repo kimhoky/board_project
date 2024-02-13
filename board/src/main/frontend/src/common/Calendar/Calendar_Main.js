@@ -1,7 +1,7 @@
 // Calendar_Main.js
 import React, { useState } from "react";
-import "../css/calendar.css";
-import Img_Upload from "./Img_Upload";
+import "../../css/calendar.css";
+import Img_Upload from "../Img_Upload";
 
 export default function Calendar_Main() {
   const [isToggleOn, setToggleOn] = useState(false);

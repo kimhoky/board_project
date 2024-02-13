@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-import "../css/mypage.css";
-import "../css/mypage_change.css";
+import "../../css/mypage.css";
+import "../../css/mypage_change.css";
 
 export default function MyPage() {
   const [user, setUser] = useState([]);

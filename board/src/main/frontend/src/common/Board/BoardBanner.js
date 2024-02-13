@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../css/board.css";
+import "../../css/board.css";
 
 import axios from "axios";
 const BoardBanner = ({ handleGridViewClick, isGridView }) => {

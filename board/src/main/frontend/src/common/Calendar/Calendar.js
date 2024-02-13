@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../css/board_calendar.css";
+import "../../css/board_calendar.css";
 
 export default function Calendar() {
   return (

@@ -1,7 +1,7 @@
 // StreamerRankings.js
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
-import "../css/rank.css";
+import "../../css/rank.css";
 
 export default function StreamerRankings() {
   const [streamerData, setStreamerData] = useState([]);

@@ -1,5 +1,5 @@
 import Sidebar from "../common/Sidebar";
-import Manager_Main from "../common/Manager_Main";
+import Manager_Main from "../common/Manager/Manager_Main";
 
 export default function Manager() {
   return (

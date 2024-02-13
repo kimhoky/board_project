@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import BoardBanner from "../common/BoardBanner";
-import BoardList from "../common/BoardList";
+import BoardBanner from "../common/Board/BoardBanner";
+import BoardList from "../common/Board/BoardList";
 import Sidebar from "../common/Sidebar";
 import axios from "axios";
-import "../common/Calendar";
-import Calendar from "../common/Calendar";
+import "../common/Calendar/Calendar";
+import Calendar from "../common/Calendar/Calendar";
 
 export default function Board() {
   const [isBookmarked, setIsBookmarked] = useState(false);

@@ -1,4 +1,4 @@
-import Rank from "../common/Rank";
+import Rank from "../common/Main/Rank";
 
 export default function Main() {
   return (

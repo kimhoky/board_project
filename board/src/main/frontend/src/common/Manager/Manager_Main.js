@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Img_Upload from "./Img_Upload";
-import "../css/manager.css";
+import Img_Upload from "../Img_Upload";
+import "../../css/manager.css";
 
 export default function Manager_Main() {
   const [uploadedImage, setUploadedImage] = useState(null);

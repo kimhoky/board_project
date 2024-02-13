@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/mypage_button.css";
+import "../../css/mypage_button.css";
 
 function Button() {
   const [btnActive, setBtnActive] = useState(null);
