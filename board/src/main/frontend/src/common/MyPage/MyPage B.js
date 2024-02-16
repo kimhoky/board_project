@@ -57,17 +57,17 @@ export default function MyPage() {
   return (
     <main className="mypage_container">
       <nav className="mypage_nav">
-        {/* <Mypage_Button />{" "} */}
+        <Mypage_Button />{" "}
+        {/* <button className="btn">게시글/댓글확인</button>
         <button className="btn">게시글/댓글확인</button>
-        <button className="btn">게시글/댓글확인</button>
-        <button className="btn"> 게시글/댓글확인</button>
+        <button className="btn"> 게시글/댓글확인</button> */}
       </nav>
 
       <div className="mypage_content">
         <section className="mypage_user_profile">
           <article className="mypage_profile_top">
             {/* 사용자의 프로필이미지, 닉네임, bj및 스트리머 */}
-            <h2>프로필</h2>
+            <h1>test2</h1>
             <img src=".\assets\Rectangle.png" alt="profile icon" />
             <h3>{user.user_name}</h3>
             <a>아프리카 tv bj</a>

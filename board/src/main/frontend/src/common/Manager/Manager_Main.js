@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import Img_Upload from "../Img_Upload";
+import ManagerA from "./Manage_Button";
+import Manager_Report from "./Manager_Report";
 import "../../css/manager.css";
 
 export default function Manager_Main() {
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [selectedTab, setSelectedTab] = useState(null);
+
+  // handleTabClick 함수 정의
+  const handleTabClick = (tabName) => {
+    console.log(`Tab clicked: ${tabName}`);
+    setSelectedTab(tabName);
+    // 이 함수에서 탭을 클릭했을 때 수행할 작업을 정의할 수 있습니다.
+    // 여기서는 콘솔에 간단한 메시지를 출력하도록 했습니다.
+  };
+
   const handleImageUpload = (imageData) => {
     setUploadedImage(imageData);
   };
@@ -11,49 +23,19 @@ export default function Manager_Main() {
   return (
     <main className="manager_main">
       <nav className="manager_name">
-        게시판 설정
+        <button onClick={() => handleTabClick("boardSettings")}>
+          게시판 설정
+        </button>
+        <button onClick={() => handleTabClick("report")}>신고</button>
+        <button onClick={() => handleTabClick("headers")}>글머리</button>
+        <button onClick={() => handleTabClick("prohibitedWords")}>
+          금지어
+        </button>
+        <button onClick={() => handleTabClick("permissions")}>권한</button>
         <hr />
       </nav>
-
-      <section className="manager_link">
-        <input type="text" name="" placeholder="인기글 컷 설정" />
-        <input type="text" name="twichh" placeholder="트위치 링크" />
-        <input type="text" name="afreeca" placeholder="아프리카 링크" />
-        <input type="text" name="chzzk_link" placeholder="치지직 링크" />
-        <input type="text" name="youtube_link" placeholder="유튜브 링크" />
-      </section>
-      <section className="link_img">
-        <img src=".\assets\Afreeca.png" alt="Afreeca icon" />
-        <img src=".\assets\Chzzk.png" alt="Chzzk icon" />
-        <img src=".\assets\Twitch.png" alt="Twitch icon" />
-        <img src=".\assets\Youtube.png" alt="Youtube icon" />
-      </section>
-      <section className="manager_img">
-        <a>배너 이미지</a>
-        <hr />
-
-        {uploadedImage ? (
-          <img
-            src={uploadedImage}
-            alt="Uploaded"
-            style={{
-              maxWidth: "900px",
-              maxHeight: "150px",
-              width: "100%",
-              height: "100%",
-              borderRadius: "20px",
-            }}
-          />
-        ) : (
-          <>
-            <article className="manger_banner"> 배너이미지</article>
-          </>
-        )}
-      </section>
-      <article className="manager_button">
-        <button>저장하기</button>
-        <Img_Upload onImageUpload={handleImageUpload} />
-      </article>
+      {selectedTab === "boardSettings" && <ManagerA />}
+      {selectedTab === "report" && <Manager_Report />}
     </main>
   );
 }
