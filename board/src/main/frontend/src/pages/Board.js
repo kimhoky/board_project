@@ -54,6 +54,7 @@ export default function Board() {
               boards={boards}
               isGridView={isGridView}
               createdAt={createdAt}
+              showDetails={true}
             />
             <Calendar />
           </div>

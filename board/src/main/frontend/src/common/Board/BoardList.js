@@ -1,8 +1,9 @@
+// BoardList.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/board_list.css";
 
-const BoardList = ({ boards, isGridView, createdAt, handleGridViewClick }) => {
+const BoardList = ({ boards, isGridView, createdAt, showDetails }) => {
   return (
     <article className={`board_container ${isGridView ? "grid-view" : ""}`}>
       <section className="board_set">
@@ -25,14 +26,18 @@ const BoardList = ({ boards, isGridView, createdAt, handleGridViewClick }) => {
                 className="board-image"
               />
               <p>{board.writer_ID}</p>
-              <p>
-                {" "}
-                {board.board_modify_date !== null
-                  ? new Date(board.board_modify_date).toLocaleString()
-                  : new Date(board.board_write_date).toLocaleString()}
-              </p>
-              <p>조회수:5</p>
-              <p>추천:5</p>
+              {/* showDetails 값이 true인 경우에만 아래 세부 정보를 렌더링 */}
+              {showDetails && (
+                <>
+                  <p>
+                    {board.board_modify_date !== null
+                      ? new Date(board.board_modify_date).toLocaleString()
+                      : new Date(board.board_write_date).toLocaleString()}
+                  </p>
+                  <p>조회수:5</p>
+                  <p>추천:5</p>
+                </>
+              )}
             </Link>
           ))}
       </section>

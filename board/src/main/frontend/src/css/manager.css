@@ -86,3 +86,44 @@ button.active-color {
 .manager_button button {
   border-radius: 10px;
 }
+/* 
+신고 css */
+.manager_report_main h1 {
+  font-size: 30px;
+  display: grid;
+}
+.report_select {
+  margin: 20px;
+  display: flex;
+}
+
+.manager_report_main h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.report_2 {
+  width: 400px;
+  margin-bottom: 15px;
+}
+.manager_report_main label {
+  text-align: left;
+  display: block;
+  margin-bottom: 5px;
+}
+.report_2 select {
+  width: 50%;
+  height: 70%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+/*신고 내역 css*/
+.report_history {
+  margin-top: 100px;
+}
+.report_history2 {
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+}
