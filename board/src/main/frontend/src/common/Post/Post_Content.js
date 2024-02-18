@@ -1,7 +1,10 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState, useRef } from "react";
+import Post_Report from "./Post_Report";
+import Post_Comment from "./Post_Comment";
 import axios from "axios";
-import "../css/content.css";
+
+import "../../css/content.css";
 
 export default function Post_Content() {
   const { board_id } = useParams();
@@ -12,6 +15,8 @@ export default function Post_Content() {
   const { board_ID } = useParams();
   const navigate = useNavigate();
   const inputBoxRef = useRef();
+  const [comment, setComment] = useState(""); // 댓글 입력값
+  const [commentsList, setCommentsList] = useState([]); // 댓글 목록
 
   console.log(board_ID);
   const targetRef = useRef();
@@ -162,6 +167,15 @@ export default function Post_Content() {
         console.error("Error:", error);
       });
   };
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+  const handleCommentSubmit = () => {
+    // 새로운 댓글을 commentsList에 추가
+    setCommentsList((prevComments) => [...prevComments, comment]);
+    // 댓글 입력값 초기화
+    setComment("");
+  };
 
   return (
     <main className="main">
@@ -200,7 +214,7 @@ export default function Post_Content() {
             <Link to="1">
               <span>공유</span>
             </Link>
-            <Link to="1">
+            <Link to="/Post_Report">
               <span>신고</span>
             </Link>
           </div>
@@ -217,6 +231,10 @@ export default function Post_Content() {
           ))}
         </article>
       </section>
+      {commentsList.map((comment, index) => (
+        <Post_Comment key={index} content={comment} />
+      ))}
+
       <section className="comment-container">
         <hr />
         <nav className="comment-header">
@@ -232,14 +250,26 @@ export default function Post_Content() {
             <span className="time">시간</span>
             <button className="edit">수정</button>
             <button className="delete">삭제</button>
+
             <button className="report">신고</button>
           </article>
         </nav>
 
-        <from>
-          <textarea className="comment"></textarea>
-          <button className="registration">등록</button>
-        </from>
+        <form>
+          <textarea
+            className="comment"
+            value={comment}
+            onChange={handleCommentChange}
+            placeholder="댓글을 입력해주세요"
+          ></textarea>
+          <button
+            className="registration"
+            type="button"
+            onClick={handleCommentSubmit}
+          >
+            등록
+          </button>
+        </form>
       </section>
       <button
         className="button_move_to_target"

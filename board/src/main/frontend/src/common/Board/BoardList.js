@@ -1,4 +1,3 @@
-// BoardList.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/board_list.css";
@@ -14,7 +13,9 @@ const BoardList = ({ boards, isGridView, createdAt, showDetails }) => {
             <Link
               to={`/post/${board.board_ID}`}
               key={board.board_ID}
-              className={`board_1 ${isGridView ? "grid-view" : ""}`}
+              className={`board_1 ${
+                isGridView ? "grid-view" : ""
+              } custom-board-style`}
             >
               <span>{board.board_tag}</span>
               <h2>

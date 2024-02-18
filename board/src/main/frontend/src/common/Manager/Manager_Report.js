@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import BoardList from "../Board/BoardList";
+import { useTable } from "react-table";
 import axios from "axios";
 import "../../css/manager.css";
 
@@ -25,6 +26,7 @@ export default function Manager_Report() {
 
     fetchBoards();
   }, []);
+
   return (
     <main className="manager_report_main">
       <h1>신고</h1>
@@ -50,11 +52,9 @@ export default function Manager_Report() {
       </section>
       <section className="report_history">
         <h1> 신고내역</h1>
-
-        <thead>
+        <thead board="1">
           <tr>
             <th>게시글</th>
-            <th>작성자</th>
             <th>신고자</th>
             <th>신고분류</th>
             <th>내용</th>
@@ -62,12 +62,32 @@ export default function Manager_Report() {
         </thead>
         <hr />
         <article className="report_history2">
-          <BoardList
-            boards={boards}
-            isGridView={isGridView}
-            createdAt={createdAt}
-            showDetails={false}
-          />
+          <tbody>
+            {/* BoardList로부터 데이터를 가져와서 각각의 행을 생성 */}
+            <BoardList
+              boards={boards}
+              isGridView={isGridView}
+              createdAt={createdAt}
+              showDetails={false}
+            />
+            {boards.map((board) => (
+              <React.Fragment key={board.board_ID}>
+                {/* 각 행에 대한 데이터 표시 */}
+                <tr>
+                  <td>
+                    {/* 각 열을 나타내는 클래스를 사용하여 스타일을 적용 */}
+                    <div className="reporter-group">
+                      <div className="reporter1">{board.reporter}신고자</div>
+                      <div className="reporter2">
+                        {board.reportCategory}신고분류
+                      </div>
+                      <div className="reporter3">{board.reportContent}내용</div>
+                    </div>
+                  </td>
+                </tr>
+              </React.Fragment>
+            ))}
+          </tbody>
         </article>
       </section>
     </main>
