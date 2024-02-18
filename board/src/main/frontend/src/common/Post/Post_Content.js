@@ -17,6 +17,8 @@ export default function Post_Content() {
   const inputBoxRef = useRef();
   const [comment, setComment] = useState(""); // 댓글 입력값
   const [commentsList, setCommentsList] = useState([]); // 댓글 목록
+  const [user, setUser] = useState([]);
+  const [userID, setUserID] = useState("");
 
   console.log(board_ID);
   const targetRef = useRef();
@@ -69,6 +71,10 @@ export default function Post_Content() {
           });
 
           const userID = response.data;
+
+          setUserID(response.data);
+          const userdata = await axios.get(`/user/check?User_ID=${userID}`);
+          setUser(userdata.data);
           setLoginID(userID);
         } else {
           setLoginID("로그인");
@@ -167,6 +173,7 @@ export default function Post_Content() {
         console.error("Error:", error);
       });
   };
+  /*댓글관련 const */
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
@@ -244,7 +251,7 @@ export default function Post_Content() {
               alt="profile icon"
             />
 
-            <span className="nickname">닉네임</span>
+            <span className="nickname">{user.user_name}</span>
           </article>
           <article className="actions">
             <span className="time">시간</span>
