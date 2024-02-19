@@ -77,6 +77,8 @@ export default function Post_Content() {
           const userdata = await axios.get(`/user/check?User_ID=${userID}`);
           setUser(userdata.data);
           setLoginID(userID);
+          // 로그인 상태를 업데이트
+          setIsLoggedIn(true);
         } else {
           setLoginID("로그인");
         }
