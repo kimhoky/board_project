@@ -19,6 +19,7 @@ export default function Post_Content() {
   const [commentsList, setCommentsList] = useState([]); // 댓글 목록
   const [user, setUser] = useState([]);
   const [userID, setUserID] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); //로그인 안했을시
 
   console.log(board_ID);
   const targetRef = useRef();
@@ -178,10 +179,25 @@ export default function Post_Content() {
     setComment(e.target.value);
   };
   const handleCommentSubmit = () => {
+    // 로그인 상태 확인
+    if (!isLoggedIn) {
+      // 로그인하지 않은 경우 알림 등을 표시하거나 다른 작업 수행
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
     // 새로운 댓글을 commentsList에 추가
     setCommentsList((prevComments) => [...prevComments, comment]);
     // 댓글 입력값 초기화
     setComment("");
+  };
+
+  const handleUserDataLoaded = (userData) => {
+    setUser(userData);
+    setUserID(userData.User_ID);
+
+    // 로그인 상태를 업데이트
+    setIsLoggedIn(true);
   };
 
   return (
@@ -251,7 +267,13 @@ export default function Post_Content() {
               alt="profile icon"
             />
 
-            <span className="nickname">{user.user_name}</span>
+            {userID ? (
+              <span className="nickname">{user.user_name}</span>
+            ) : (
+              <span className="nickname" style={{ color: "red" }}>
+                로그인을 안하셨습니다.
+              </span>
+            )}
           </article>
           <article className="actions">
             <span className="time">시간</span>
