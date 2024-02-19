@@ -257,7 +257,11 @@ export default function Post_Content() {
         </article>
       </section>
       {commentsList.map((comment, index) => (
-        <Post_Comment key={index} content={comment} />
+        <Post_Comment
+          key={index}
+          content={comment}
+          user_name={user.user_name}
+        />
       ))}
 
       <section className="comment-container">

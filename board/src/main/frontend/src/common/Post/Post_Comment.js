@@ -2,7 +2,7 @@ import React from "react";
 
 import "../../css/content.css";
 
-export default function Post_Comment({ content }) {
+export default function Post_Comment({ content, user_name }) {
   return (
     <section className="post_comment1">
       <article className="post_comment">
@@ -12,7 +12,7 @@ export default function Post_Comment({ content }) {
             alt="profile icon"
           />
 
-          <span className="nickname">닉네임</span>
+          <span className="nickname">{user_name}</span>
         </div>
         <div className="actions">
           <span className="time">시간</span>
