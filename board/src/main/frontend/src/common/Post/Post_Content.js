@@ -7,7 +7,6 @@ import axios from "axios";
 import "../../css/content.css";
 
 export default function Post_Content() {
-  const { board_id } = useParams();
   const [loginID, setLoginID] = useState("로그인");
   const [boardTitle, setBoardTitle] = useState("");
   const [boardContent, setBoardContent] = useState("");
@@ -201,7 +200,7 @@ export default function Post_Content() {
     // 로그인 상태를 업데이트
     setIsLoggedIn(true);
   };
-
+  localStorage.setItem("board_ID", board_ID);
   return (
     <main className="main">
       <hr />
@@ -240,7 +239,13 @@ export default function Post_Content() {
               <span>공유</span>
             </Link>
             <Link to="/Post_Report">
-              <span>신고</span>
+              <span
+                onClick={() =>
+                  navigate("/Post_Report", { state: { board_ID } })
+                }
+              >
+                신고
+              </span>
             </Link>
           </div>
           {boards.map((board) => (
@@ -265,47 +270,45 @@ export default function Post_Content() {
       ))}
 
       <section className="comment-container">
-        <hr />
-        <nav className="comment-header">
-          <article className="user-info">
-            <img
-              src={process.env.PUBLIC_URL + "/assets/Rectangle.png"}
-              alt="profile icon"
-            />
+        {userID && (
+          <>
+            <hr />
+            <nav className="comment-header">
+              <article className="user-info">
+                <img
+                  src={process.env.PUBLIC_URL + "/assets/Rectangle.png"}
+                  alt="profile icon"
+                />
 
-            {userID ? (
-              <span className="nickname">{user.user_name}</span>
-            ) : (
-              <span className="nickname" style={{ color: "red" }}>
-                로그인을 안하셨습니다.
-              </span>
-            )}
-          </article>
-          <article className="actions">
-            <span className="time">시간</span>
-            <button className="edit">수정</button>
-            <button className="delete">삭제</button>
+                <span className="nickname">{user.user_name}</span>
+              </article>
+              <article className="actions">
+                <span className="time">시간</span>
+                <button className="edit">수정</button>
+                <button className="delete">삭제</button>
+                <button className="report">신고</button>
+              </article>
+            </nav>
 
-            <button className="report">신고</button>
-          </article>
-        </nav>
-
-        <form>
-          <textarea
-            className="comment"
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="댓글을 입력해주세요"
-          ></textarea>
-          <button
-            className="registration"
-            type="button"
-            onClick={handleCommentSubmit}
-          >
-            등록
-          </button>
-        </form>
+            <form>
+              <textarea
+                className="comment"
+                value={comment}
+                onChange={handleCommentChange}
+                placeholder="댓글을 입력해주세요"
+              ></textarea>
+              <button
+                className="registration"
+                type="button"
+                onClick={handleCommentSubmit}
+              >
+                등록
+              </button>
+            </form>
+          </>
+        )}
       </section>
+
       <button
         className="button_move_to_target"
         onClick={handleMoveToTargetClass}

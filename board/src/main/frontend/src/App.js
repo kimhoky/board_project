@@ -18,6 +18,7 @@ import Manager from "./pages/Manager";
 import MyPage from "./common/MyPage/MyPage";
 import Calendar_2 from "./common/Calendar/Calendar";
 import ScrollButton from "./common/ScrollButton";
+import Post_Report from "./common/Post/Post_Report";
 
 import { ThemeProvider } from "./context/themeProvider";
 
@@ -61,6 +62,7 @@ function App() {
           <Route path="manager" element={<Manager />} />
           <Route path="MyPage" element={<MyPage toUserID={toUserID} />} />
           <Route path="Calendar_2" element={<Calendar_2 />} />
+          <Route path="/Post_Report" element={<Post_Report />} />
         </Routes>
         <ScrollButton />
       </ThemeProvider>
