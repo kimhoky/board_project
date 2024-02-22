@@ -103,9 +103,9 @@ export default function Header() {
         // 서버에 로그아웃 요청을 보냄
         await axios.post("/user/logout");
         if (localStorage.getItem("lastVisitedPath") === "/MyPage") {
-                      document.location.href = "/";
+          document.location.href = "/";
         } else {
-            document.location.href = localStorage.getItem("lastVisitedPath");
+          document.location.href = localStorage.getItem("lastVisitedPath");
         }
       } catch (error) {
         console.error("Error during logout:", error);
@@ -142,7 +142,9 @@ export default function Header() {
         <Link className="로그인" to={dynamicPath} onClick={dynamicEvent}>
           {loginID}
         </Link>
-        <Link to={mypagePath} className="마이페이지">{mypage}</Link>
+        <Link to={mypagePath} className="마이페이지">
+          {mypage}
+        </Link>
         <Link to="/board">게시판</Link>
         <button className="header_bookmark">
           구독 게시판 ▼

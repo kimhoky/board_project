@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../css/writing.css";
 import axios from "axios";
-import PropTypes from 'prop-types'; // 추가
-import { useLocation } from 'react-router-dom';
-
-
+import PropTypes from "prop-types"; // 추가
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuthentication from "../componets/useAuthentication";
 
 export default function Writing() {
   const [boardTitle, setBoardTitle] = useState("");
@@ -19,17 +18,18 @@ export default function Writing() {
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [alignment, setAlignment] = useState("left");
   const [lineHeight, setLineHeight] = useState(1.5);
-const location = useLocation();
- const dataList = location.state && location.state.data;
+  const location = useLocation();
+  const dataList = location.state && location.state.data;
   const toggleBold = () => setIsBold(!isBold);
   const toggleItalic = () => setIsItalic(!isItalic);
   const toggleUnderline = () => setIsUnderline(!isUnderline);
   const toggleStrikeThrough = () => setIsStrikeThrough(!isStrikeThrough);
-const [currentDate, setCurrentDate] = useState(new Date().toISOString());
+  const [currentDate, setCurrentDate] = useState(new Date().toISOString());
 
-
-
-
+  //로그인 토큰 조회후 유무에따른 사용자 접근제어
+  const isAuthenticated = useAuthentication();
+  const token = localStorage.getItem("userToken");
+  const authenticated = !!token;
 
   const changeTextColor = () => {
     const newColor = prompt("Enter text color:");
@@ -52,7 +52,6 @@ const [currentDate, setCurrentDate] = useState(new Date().toISOString());
   };
   useEffect(() => {
     const fetchUserData = async () => {
-
       try {
         const token = localStorage.getItem("userToken");
 
@@ -65,9 +64,6 @@ const [currentDate, setCurrentDate] = useState(new Date().toISOString());
 
           const userID = response.data;
           setLoginID(userID);
-
-
-
         } else {
           setLoginID("로그인");
         }
@@ -88,25 +84,18 @@ const [currentDate, setCurrentDate] = useState(new Date().toISOString());
   };
 
   const handleSubmit = async (e) => {
-e.preventDefault();
+    e.preventDefault();
 
     try {
-
-const response = await axios.post("/board/save", null,  {
-params: {
-Board_title: boardTitle,
-  Board_content: boardContent,
-  Community_ID: "1",
-  Writer_ID: loginID,
- // Board_write_date: new Date(),
-
-}
-
-
-
-
-});
-
+      const response = await axios.post("/board/save", null, {
+        params: {
+          Board_title: boardTitle,
+          Board_content: boardContent,
+          Community_ID: "1",
+          Writer_ID: loginID,
+          // Board_write_date: new Date(),
+        },
+      });
 
       console.log("Server Response:", response.data);
 
@@ -117,27 +106,20 @@ Board_title: boardTitle,
     }
   };
 
-const handleEdit = async (e) => {
-e.preventDefault();
+  const handleEdit = async (e) => {
+    e.preventDefault();
 
     try {
-
-const response = await axios.post("/board/update", null,  {
-params: {
-Board_title: boardTitle,
-  Board_content: boardContent,
-  Community_ID: "1",
-  Writer_ID: loginID,
-  Board_ID: boardID,
- // Board_write_date: new Date(),
-
-}
-
-
-
-
-});
-
+      const response = await axios.post("/board/update", null, {
+        params: {
+          Board_title: boardTitle,
+          Board_content: boardContent,
+          Community_ID: "1",
+          Writer_ID: loginID,
+          Board_ID: boardID,
+          // Board_write_date: new Date(),
+        },
+      });
 
       console.log("Server Response:", response.data);
 
@@ -148,28 +130,23 @@ Board_title: boardTitle,
     }
   };
 
-useEffect(() => {
+  useEffect(() => {
     const fetchboardData = async () => {
-
       try {
-console.log(dataList);
-        if (dataList != null) {
         console.log(dataList);
-         setBoardTitle(dataList[0].board_title);
-         setBoardContent(dataList[0].board_content);
-         setBoardID(dataList[0].board_ID);
-
+        if (dataList != null) {
+          console.log(dataList);
+          setBoardTitle(dataList[0].board_title);
+          setBoardContent(dataList[0].board_content);
+          setBoardID(dataList[0].board_ID);
         } else {
-
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-fetchboardData();
+    fetchboardData();
   }, []);
-
-
 
   return (
     <div className="writing_container">
@@ -259,15 +236,20 @@ fetchboardData();
             onChange={handleContentChange}
           ></textarea>
 
-           {dataList ? ( // dataList가 null이 아닌 경우
-                    <button type="submit" className="edit" onClick={handleEdit}>
-                      수정
-                    </button>
-                  ) : ( // dataList가 null인 경우
-                    <button type="submit" className="registration" onClick={handleSubmit}>
-                      등록
-                    </button>
-                      )}
+          {dataList ? ( // dataList가 null이 아닌 경우
+            <button type="submit" className="edit" onClick={handleEdit}>
+              수정
+            </button>
+          ) : (
+            // dataList가 null인 경우
+            <button
+              type="submit"
+              className="registration"
+              onClick={handleSubmit}
+            >
+              등록
+            </button>
+          )}
         </div>
       </form>
     </div>

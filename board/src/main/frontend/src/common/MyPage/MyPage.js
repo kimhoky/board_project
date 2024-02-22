@@ -1,8 +1,10 @@
 import Mypage_Button from "./Mypage_Button";
 // import BoardList from "./BoardList";
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import useAuthentication from "../../componets/useAuthentication";
+
 import "../../css/mypage.css";
 
 export default function MyPage() {
@@ -10,6 +12,12 @@ export default function MyPage() {
   const [userID, setUserID] = useState("");
   const [boards, setBoards] = useState([]);
   const [btnActive, setBtnActive] = useState(null);
+
+  //로그인 토큰 조회후 유무에따른 사용자 접근제어
+  const isAuthenticated = useAuthentication();
+  const token = localStorage.getItem("userToken");
+  const authenticated = !!token;
+
   const toggleActive = (idx) => {
     setBtnActive(idx === btnActive ? null : idx);
   };
