@@ -8,6 +8,7 @@ import "../../css/manager.css";
 export default function Manager_Report() {
   const [boards, setBoards] = useState([]);
   const [isGridView, setIsGridView] = useState(false);
+  const [reportData, setReportData] = useState(null); //post_report 값들
 
   const createdAt = new Date();
 
@@ -63,13 +64,6 @@ export default function Manager_Report() {
         <hr />
         <article className="report_history2">
           <tbody>
-            {/* BoardList로부터 데이터를 가져와서 각각의 행을 생성 */}
-            <BoardList
-              boards={boards}
-              isGridView={isGridView}
-              createdAt={createdAt}
-              showDetails={false}
-            />
             {boards.map((board) => (
               <React.Fragment key={board.board_ID}>
                 {/* 각 행에 대한 데이터 표시 */}
@@ -77,11 +71,25 @@ export default function Manager_Report() {
                   <td>
                     {/* 각 열을 나타내는 클래스를 사용하여 스타일을 적용 */}
                     <div className="reporter-group">
-                      <div className="reporter1">{board.reporter}신고자</div>
+                      <div className="reporter1">
+                        {board.board_ID === reportData?.board_ID
+                          ? reportData.writer_ID
+                          : ""}
+                        신고자
+                      </div>{" "}
+                      {/* */}
                       <div className="reporter2">
-                        {board.reportCategory}신고분류
+                        {board.board_ID === reportData?.board_ID
+                          ? reportData.reportCategory
+                          : ""}
+                        신고분류
                       </div>
-                      <div className="reporter3">{board.reportContent}내용</div>
+                      <div className="reporter3">
+                        {board.board_ID === reportData?.board_ID
+                          ? reportData.reportContent
+                          : ""}
+                        내용
+                      </div>
                     </div>
                   </td>
                 </tr>

@@ -25,16 +25,32 @@ export default function Post_Content() {
 
   console.log("userID:", userID); //로그인한 상태의 id체크
   console.log("isLoggedIn:", isLoggedIn); //로그인 했는지 체크
+
   const handleReportClick = async () => {
     try {
+      // 사용자가 로그인하지 않은 경우
+      if (!isLoggedIn) {
+        alert("로그인이 필요합니다.");
+        return; // 여기서 함수 종료
+      }
+
+      // 사용자가 로그인한 경우, 게시글 정보를 가져와서 신고 페이지로 이동
       const response = await axios.get(
         `/board/getboard?bid=${encodeURIComponent(board_ID)}`
       );
       const boardData = response.data[0];
 
-      navigate("/Post_Report", {
-        state: { board_ID: boardData.board_ID, writer_ID: boardData.writer_ID },
-      });
+      // navigate 함수를 호출하기 전에 로그인 상태를 다시 한 번 확인
+      if (isLoggedIn) {
+        navigate("/Post_Report", {
+          state: {
+            board_ID: boardData.board_ID,
+            writer_ID: boardData.writer_ID,
+          },
+        });
+      } else {
+        alert("로그인이 필요합니다.");
+      }
     } catch (error) {
       console.error("Error fetching board data:", error);
     }
@@ -197,6 +213,7 @@ export default function Post_Content() {
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
+
   const handleCommentSubmit = () => {
     // 로그인 상태 확인
     if (!isLoggedIn) {
@@ -219,6 +236,7 @@ export default function Post_Content() {
     setIsLoggedIn(true);
   };
   localStorage.setItem("board_ID", board_ID);
+
   return (
     <main className="main">
       <hr />
@@ -256,8 +274,14 @@ export default function Post_Content() {
             <Link to="1">
               <span>공유</span>
             </Link>
-            <Link to="/Post_Report">
-              <span onClick={handleReportClick}>신고</span>
+            <Link
+              to="Post_Report"
+              onClick={(e) => {
+                e.preventDefault();
+                handleReportClick();
+              }}
+            >
+              <span>신고</span>
             </Link>
           </div>
           {boards.map((board) => (
