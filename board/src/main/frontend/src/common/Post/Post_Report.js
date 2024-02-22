@@ -4,21 +4,19 @@ import "../../css/content.css";
 
 export default function Post_Report() {
   const location = useLocation();
-
-  const storedBoardID = localStorage.getItem("board_ID");
-  const [board_ID, setBoard_ID] = useState(storedBoardID);
+  const { board_ID, writer_ID } = location.state || {};
 
   useEffect(() => {
-    return () => {
-      localStorage.removeItem("board_ID");
-    };
-  }, []);
-
+    // 여기서 board_ID와 writer_ID를 사용하여 필요한 작업을 수행
+    console.log("board_ID:", board_ID);
+    console.log("writer_ID:", writer_ID);
+  }, [board_ID, writer_ID]);
   return (
     <main className="post_report_containers">
       <article className="post_report_content">
         <h1>컨텐츠 신고</h1>
         <span>신고 게시물: {board_ID}</span>
+        <span>신고 닉네임: {writer_ID}</span>
 
         <span className="test-label">신고 유형</span>
         <select name="신고 유형 ">

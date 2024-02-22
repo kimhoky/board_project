@@ -222,3 +222,6 @@ hr {
   display: flex;
   justify-self: flex-end;
 }
+.report_category {
+  border: 1px solid #403c3c;
+}
