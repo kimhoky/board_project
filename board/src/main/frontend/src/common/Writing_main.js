@@ -5,6 +5,8 @@ import PropTypes from "prop-types"; // 추가
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuthentication from "../componets/useAuthentication";
 
+import CustomCKEditor from "../componets/CustomCKEditor.js";
+
 export default function Writing() {
   const [boardTitle, setBoardTitle] = useState("");
   const [boardContent, setBoardContent] = useState("");
@@ -26,6 +28,10 @@ export default function Writing() {
   const toggleStrikeThrough = () => setIsStrikeThrough(!isStrikeThrough);
   const [currentDate, setCurrentDate] = useState(new Date().toISOString());
 
+  const handleImageUpload = (imageUrl) => {
+    // 이미지 업로드 결과 처리
+    console.log("Image uploaded:", imageUrl);
+  };
   //로그인 토큰 조회후 유무에따른 사용자 접근제어
   const isAuthenticated = useAuthentication();
   const token = localStorage.getItem("userToken");
@@ -218,23 +224,10 @@ export default function Writing() {
             </div>
           </div>
 
-          <textarea
-            className={`writing_text ${isBold ? "bold" : ""} ${
-              isItalic ? "italic" : ""
-            } ${isUnderline ? "underline" : ""} ${
-              isStrikeThrough ? "strikethrough" : ""
-            }`}
-            style={{
-              color: textColor,
-              backgroundColor,
-              textAlign: alignment,
-              lineHeight: `${lineHeight}em`,
-            }}
-            name="Board_content"
-            placeholder="내용입력"
-            value={boardContent}
-            onChange={handleContentChange}
-          ></textarea>
+          <CustomCKEditor
+            initialValue={boardContent}
+            onChange={(data) => setBoardContent(data)}
+          />
 
           {dataList ? ( // dataList가 null이 아닌 경우
             <button type="submit" className="edit" onClick={handleEdit}>
