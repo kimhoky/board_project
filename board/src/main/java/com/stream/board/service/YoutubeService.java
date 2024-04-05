@@ -23,7 +23,7 @@ public class YoutubeService {
 
     //@Value 어노테이션을 사용하여 application.yml에서 정의한 YouTube API 키를 주입 받음
     //@Value("${youtube.api.key}")
-    private String apiKey = "AIzaSyC1_SYmCiEE5-YlhquO92kqYd-mHiqY0-s";
+   
 
     public String getChannelIdByChannelName(String channelName) throws IOException {
         // JSON 데이터를 처리하기 위한 JsonFactory 객체 생성
